@@ -1,0 +1,86 @@
+{
+  "name": "neostylus-api",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "@cloudinary/base": "^1.0.0-beta.2",
+    "@sentry/node": "^5.27.0",
+    "amqplib": "^0.5.6",
+    "awesome-phonenumber": "^2.48.0",
+    "aws-sdk": "^2.776.0",
+    "axios": "^0.21.0",
+    "bcrypt": "^4.0.1",
+    "body-parser": "^1.19.0",
+    "cloudinary": "^1.25.1",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "dotenv-expand": "^5.1.0",
+    "download": "^8.0.0",
+    "ejs": "^3.1.6",
+    "email-validator": "^2.0.4",
+    "express": "~4.16.1",
+    "express-device": "^0.4.2",
+    "express-group-routes": "^1.1.0",
+    "express-sanitizer": "^1.0.5",
+    "file-type": "^16.3.0",
+    "google-auth-library": "^7.0.4",
+    "helmet": "^3.23.3",
+    "ioredis": "^4.17.3",
+    "is-json": "^2.0.1",
+    "jose": "^1.27.2",
+    "moment": "^2.29.1",
+    "morgan": "~1.9.1",
+    "multer": "^1.4.2",
+    "multer-s3": "^2.9.0",
+    "multer-s3-v2": "^2.2.1",
+    "mysql2": "^2.2.5",
+    "otp-generator": "^1.1.0",
+    "path": "^0.12.7",
+    "randexp": "^0.5.3",
+    "sequelize": "^6.5.1",
+    "uuid": "^8.3.1"
+  },
+  "devDependencies": {
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-plugin-import": "^2.22.1",
+    "module-alias": "^2.2.2"
+  },
+  "eslintConfig": {
+    "env": {
+      "node": true,
+      "es6": true
+    },
+    "rules": {
+      "indent": [
+        2,
+        2
+      ],
+      "quotes": [
+        2,
+        "single"
+      ],
+      "comma-dangle": [
+        2,
+        "always-multiline"
+      ]
+    },
+    "parserOptions": {
+      "ecmaVersion": 2017
+    }
+  },
+  "_moduleAliases": {
+    "@api": "src/api",
+    "@middleware": "src/middleware",
+    "@models": "models",
+    "@queue": "queue",
+    "@redis": "redis",
+    "@routes": "src/routes",
+    "@helper": "src/helper",
+    "@utils": "src/utils",
+    "@socket": "src/socket"
+  }
+}

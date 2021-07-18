@@ -1,0 +1,32 @@
+{
+  "development": {
+    "username": "neostylus",
+    "password": "693dc6cd-06b0-40e2-afa7-ae48ecf2c1d7",
+    "database": "neostylus",
+    "host": "31.220.109.108",
+    "port": 3306,
+    "dialect": "mysql",
+    "logging": false,
+    "pool": {
+      "handleDisconnects": true,
+      "max": 13,
+      "min": 1,
+      "idle": 10000,
+      "acquire": 20000
+    }
+  },
+  "test": {
+    "username": "root",
+    "password": null,
+    "database": "database_test",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "root",
+    "password": null,
+    "database": "database_production",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  }
+}
