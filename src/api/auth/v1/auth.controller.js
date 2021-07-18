@@ -128,7 +128,7 @@ exports.verifyOTP = async (req, res) =>{
 
     const { status, data, message } = await userDb.update({
       body,
-      id: decoded.user.id,
+      where: { id: decoded.user.id },
     });
 
     if(!status) throw { code: 503, message };
