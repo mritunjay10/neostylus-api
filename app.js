@@ -36,6 +36,7 @@ global.phoneNumber = global.phoneNumber || phoneNumber;
 const { authorization, } = require('@middleware');
 
 const auth = require('@routes/auth');
+const common = require('@routes/common');
 
 const app = express();
 
@@ -49,6 +50,7 @@ app.use(expressSanitizer());
 
 ////////////////////////////////    ADMIN
 app.use('/api/v1/auth', auth);
+app.use('/api/v1/common', common);
 
 
 // catch 404 and forward to error handler
