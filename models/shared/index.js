@@ -10,6 +10,6 @@ module.exports = {
   categoryDb,
   courseDb,
   subCategoryDb,
-    slotDb,
-    rawQuery,
+  slotDb,
+  rawQuery,
 };
