@@ -2,6 +2,7 @@ const db = require('@models');
 
 const Model = db.categories;
 
+Model.hasMany(db.subCategories,  { sourceKey: 'id', foreignKey:'category', as:'subCategoriesData' });
 
 exports.create = async (datum)=>{
   try{
@@ -22,6 +23,7 @@ exports.all = async ()=>{
 
         const data = await Model.findAll({
             attributes: ['id','title',],
+            where: { status: true, deleted: false, }
         });
 
         return { status: true, data, message: 'Categories!' };
