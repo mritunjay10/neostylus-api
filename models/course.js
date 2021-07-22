@@ -18,11 +18,11 @@ module.exports = (sequelize, DataTypes)=> {
             },
             imageUrl: {
                 type: DataTypes.STRING(225),
-                allowNull: false,
+                allowNull: true,
             },
             coverImageUrl: {
                 type: DataTypes.STRING(225),
-                allowNull: false,
+                allowNull: true,
             },
             totalSessions: {
                 type: DataTypes.INTEGER,

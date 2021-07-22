@@ -33,11 +33,11 @@ module.exports = {
         },
         imageUrl: {
             type: Sequelize.STRING(225),
-            allowNull: false,
+            allowNull: true,
         },
         coverImageUrl: {
             type: Sequelize.STRING(225),
-            allowNull: false,
+            allowNull: true,
         },
         totalSessions: {
             type: Sequelize.INTEGER,
