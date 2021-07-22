@@ -4,6 +4,9 @@ const Model = db.subCategories;
 
 Model.belongsTo(db.categories,  { sourceKey: 'id', foreignKey:'category', as:'categoryDatum' });
 
+Model.hasMany(db.courses,  { sourceKey: 'id', foreignKey:'subCategory', as:'coursesData' });
+
+
 exports.create = async (datum)=>{
   try{
 

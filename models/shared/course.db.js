@@ -2,6 +2,8 @@ const db = require('@models');
 
 const Model = db.courses;
 
+Model.belongsTo(db.categories,  { sourceKey: 'id', foreignKey:'course', as:'courseCategoryDatum' });
+Model.belongsTo(db.subCategories,  { sourceKey: 'id', foreignKey:'subCategory', as:'courseSubCategoryDatum' });
 
 exports.create = async (datum)=>{
     try{
@@ -26,6 +28,18 @@ exports.list = async (data) =>{
             where: data.where,
             offset: ((parseInt(+data.page)) - 1) * parseInt(+data.rowsPerPage),
             limit: parseInt(+data.rowsPerPage),
+            include: [
+                {
+                    model : db.categories,
+                    as: 'courseCategoryDatum',
+                    attributes: ['id','title']
+                },
+                {
+                    model : db.subCategories,
+                    as: 'courseSubCategoryDatum',
+                    attributes: ['id','title', 'imageUrl']
+                }
+            ],
             order: [
                 [data.sortBy, (data.descending === true ? 'DESC' : 'ASC')],
             ],

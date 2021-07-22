@@ -3,6 +3,7 @@ const db = require('@models');
 const Model = db.categories;
 
 Model.hasMany(db.subCategories,  { sourceKey: 'id', foreignKey:'category', as:'subCategoriesData' });
+Model.hasMany(db.courses,  { sourceKey: 'id', foreignKey:'course', as:'coursesData' });
 
 exports.create = async (datum)=>{
   try{
