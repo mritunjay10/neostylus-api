@@ -1,12 +1,12 @@
 const { response } = require('@utils');
-const { categoryDb } = require('@models/shared');
+const { subCategoryDb } = require('@models/shared');
 
 
 exports.all = async (req, res)=>{
 
     try{
 
-        const { status, data, message } = await categoryDb.all();
+        const { status, data, message } = await subCategoryDb.all();
 
         response.success(res, { code: 200, status, message, data , pagination: null });
     }
