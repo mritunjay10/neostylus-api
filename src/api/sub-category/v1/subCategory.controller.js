@@ -6,7 +6,7 @@ exports.all = async (req, res)=>{
 
     try{
 
-        const { status, data, message } = await subCategoryDb.all();
+        const { status, data, message } = await subCategoryDb.all({});
 
         response.success(res, { code: 200, status, message, data , pagination: null });
     }
