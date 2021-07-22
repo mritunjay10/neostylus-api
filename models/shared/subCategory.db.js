@@ -27,17 +27,14 @@ exports.all = async (where)=>{
         const data = await Model.findAll({
             where,
             attributes: ['id','title',],
-            include:[
-                {
-                    include: db.categories,
-                    as: 'categoryDatum',
-                    attributes: ['id','title'],
-                    where: { status: true, deleted: false, }
-                }
-            ]
+            include:{
+                model: db.categories,
+                as: 'categoryDatum',
+                attributes:['id','imageUrl','title',],
+            },
         });
 
-        return { status: true, data, message: 'Sub-categories!' };
+        return { status: true, data, message: 'Sub-categories!', pagination: null };
     }
     catch (e){
         return { status: false, message: e.message || 'Unable to fetch categories', pagination: null }
