@@ -1,23 +1,50 @@
 /* jshint indent: 2 */
 
 module.exports = (sequelize, DataTypes)=> {
-    return  sequelize.define('subCategories', {
+    return  sequelize.define('courses', {
             id: {
                 type: DataTypes.INTEGER,
                 allowNull: false,
                 primaryKey: true,
                 autoIncrement: true,
             },
-            category: {
-                type: DataTypes.INTEGER,
-                allowNull: false,
-            },
             title: {
                 type: DataTypes.STRING(225),
                 allowNull: false,
             },
-            imageUrl: {
+            description: {
+                type: DataTypes.STRING(1000),
+                allowNull: false,
+            },
+            image: {
                 type: DataTypes.STRING(225),
+                allowNull: false,
+            },
+            coverImage: {
+                type: DataTypes.STRING(225),
+                allowNull: false,
+            },
+            totalSessions: {
+                type: DataTypes.INTEGER,
+                allowNull: false,
+                defaultValue: 1,
+            },
+            sessionDuration:{
+                type: DataTypes.INTEGER,
+                allowNull: false,
+                defaultValue: 1,
+            },
+            costPerSession: {
+                type: DataTypes.FLOAT(12,6),
+                allowNull: false,
+            },
+            mandatorySessionCount: {
+                type: DataTypes.INTEGER,
+                allowNull: false,
+                defaultValue: 1,
+            },
+            meta: {
+                type: DataTypes.JSON,
                 allowNull: true,
             },
             status:{
@@ -38,7 +65,7 @@ module.exports = (sequelize, DataTypes)=> {
             },
         },
         {
-            tableName: 'subCategories',
+            tableName: 'courses',
             hooks: {
                 beforeCreate: function (datum, options,) {
                     datum.createdAt = new Date();
