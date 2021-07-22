@@ -16,11 +16,11 @@ module.exports = (sequelize, DataTypes)=> {
                 type: DataTypes.STRING(1000),
                 allowNull: false,
             },
-            image: {
+            imageUrl: {
                 type: DataTypes.STRING(225),
                 allowNull: false,
             },
-            coverImage: {
+            coverImageUrl: {
                 type: DataTypes.STRING(225),
                 allowNull: false,
             },

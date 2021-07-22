@@ -31,11 +31,11 @@ module.exports = {
             type: Sequelize.STRING(1000),
             allowNull: false,
         },
-        image: {
+        imageUrl: {
             type: Sequelize.STRING(225),
             allowNull: false,
         },
-        coverImage: {
+        coverImageUrl: {
             type: Sequelize.STRING(225),
             allowNull: false,
         },
