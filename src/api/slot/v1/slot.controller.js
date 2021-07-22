@@ -22,7 +22,7 @@ exports.list = async (req, res,)=>{
         where['status'] = true;
         where['deleted'] = false;
 
-        const { success, data, message, pagination } = await courseDb.list({
+        const { success, data, message, pagination } = await slotDb.list({
             page: req.body.pagination.page,
             rowsPerPage: req.body.pagination.rowsPerPage,
             sortBy: req.body.pagination.sortBy,
