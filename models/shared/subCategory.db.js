@@ -30,7 +30,7 @@ exports.all = async (where)=>{
             include:{
                 model: db.categories,
                 as: 'categoryDatum',
-                attributes:['id','imageUrl','title',],
+                attributes:['id','title',],
             },
         });
 
