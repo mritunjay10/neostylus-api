@@ -2,7 +2,7 @@ const db = require('@models');
 
 const Model = db.courses;
 
-Model.belongsTo(db.categories,  { sourceKey: 'id', foreignKey:'course', as:'courseCategoryDatum' });
+Model.belongsTo(db.categories,  { sourceKey: 'id', foreignKey:'category', as:'courseCategoryDatum' });
 Model.belongsTo(db.subCategories,  { sourceKey: 'id', foreignKey:'subCategory', as:'courseSubCategoryDatum' });
 
 exports.create = async (datum)=>{
