@@ -21,7 +21,7 @@ exports.bookedCourses = async (where) =>{
 
         const data = await Model.findAll({
             where,
-            attributes: ['data','slot','course'],
+            attributes: ['date','slot','course'],
         });
 
         return { status: true, data, message: 'Booking dates!', pagination: null }
