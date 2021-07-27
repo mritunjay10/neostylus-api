@@ -133,8 +133,7 @@ exports.verifyOTP = async (req, res) =>{
 
     if(!status) throw { code: 503, message };
 
-    response.success(res, { code: 200, status, message: 'Account verified successfully!',
-      data , pagination: null });
+    response.success(res, { code: 200, message: 'Account verified successfully!', data , pagination: null });
 
   }
   catch(e) {
@@ -172,7 +171,7 @@ exports.forgotPasswordOTP = async(req, res)=>{
 
     redis.set(hash, otp);
 
-    response.success(res, { code: 200, status: true, message: 'OTP Token', data: optJWT , pagination: null });
+    response.success(res, { code: 200, message: 'OTP Token', data: optJWT , pagination: null });
 
   }
   catch(e) {
@@ -207,7 +206,7 @@ exports.forgotSetPassword = async(req, res)=>{
 
     if(!status) throw { code: 503, message };
 
-    response.success(res, { code: 200, status, message: 'Password changed successfully!', data , pagination: null });
+    response.success(res, { code: 200, message: 'Password changed successfully!', data , pagination: null });
 
   }
   catch(e) {
@@ -238,7 +237,7 @@ exports.googleRegister = async (req, res,) =>{
 
     data.setDataValue('password', null);
 
-    response.success(res, { code: 201, status, message, data, pagination});
+    response.success(res, { code: 201, message, data, pagination});
 
   }
   catch(e) {
@@ -268,7 +267,7 @@ exports.googleLogin = async (req, res,) =>{
     data.setDataValue('role', null);
     data.setDataValue('token', token);
 
-    response.success(res, { code: 200, status: true, message: message, data, pagination });
+    response.success(res, { code: 200, message: message, data, pagination });
   }
   catch(e) {
     response.error(res, e)
@@ -283,7 +282,7 @@ exports.logOut = async (req, res)=>{
 
     await JWT.logout(req.authorization);
 
-    response.success(res, { code: 200, status: true, message: 'Logged out successfully!', data: 1, pagination: null });
+    response.success(res, { code: 200, message: 'Logged out successfully!', data: 1, pagination: null });
   }
   catch (e){
     response.error(res, e);

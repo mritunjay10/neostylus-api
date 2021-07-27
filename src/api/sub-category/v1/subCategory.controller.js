@@ -8,6 +8,8 @@ exports.all = async (req, res)=>{
 
         const { status, data, message } = await subCategoryDb.all({});
 
+        if(!status) throw { message };
+
         response.success(res, { code: 200, status, message, data , pagination: null });
     }
     catch (e){

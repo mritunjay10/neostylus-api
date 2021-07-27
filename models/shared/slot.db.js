@@ -47,10 +47,10 @@ exports.list = async (data) =>{
             descending: data.descending,
         };
 
-        return { success: true, data: datum.rows, pagination , message: 'Courses list' }
+        return { status: true, data: datum.rows, pagination , message: 'Courses list' }
     }
     catch (e){
 
-        return { success: false, data: null, message: e.message || 'Unable to fetch courses', pagination: null }
+        return { status: false, data: null, message: e.message || 'Unable to fetch courses', pagination: null }
     }
 };

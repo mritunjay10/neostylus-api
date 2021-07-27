@@ -27,7 +27,7 @@ exports.list = async (req, res)=>{
         where['status'] = true;
         where['deleted'] = false;
 
-        const { success, data, message, pagination } = await courseDb.list({
+        const { status, data, message, pagination } = await courseDb.list({
             page: req.body.pagination.page,
             rowsPerPage: req.body.pagination.rowsPerPage,
             sortBy: req.body.pagination.sortBy,
@@ -35,7 +35,9 @@ exports.list = async (req, res)=>{
             where: where,
         });
 
-        response.success(res, { code: 200, success, message, data, pagination});
+        if(!status) throw { message };
+
+        response.success(res, { code: 200, message, data, pagination});
 
     }
     catch (e) {
