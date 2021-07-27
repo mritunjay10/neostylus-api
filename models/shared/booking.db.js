@@ -11,7 +11,19 @@ exports.create = async (data)=>{
         return { status: true, data: 1, message: 'Booked successfully!', pagination: null }
     }
     catch (e){
-        console.log(e.message)
         return { status: false, data: null, message: 'Unable to book!', pagination: null }
+    }
+};
+
+exports.bookingDatesCount = async (where) =>{
+
+    try{
+
+        const datum = await Model.count({ where });
+
+        return { status: true, data: datum[0], message: 'Booking dates!', pagination: null }
+    }
+    catch (e){
+        return { status: false, data: null, message: 'Unable to fetch!', pagination: null }
     }
 };
