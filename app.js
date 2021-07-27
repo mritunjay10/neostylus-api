@@ -52,7 +52,7 @@ app.use(expressSanitizer());
 ////////////////////////////////    ADMIN
 app.use('/api/v1/auth', auth);
 app.use('/api/v1/common', common);
-app.use('/api/v1/user', user);
+app.use('/api/v1/user', authorization, user);
 
 
 // catch 404 and forward to error handler
