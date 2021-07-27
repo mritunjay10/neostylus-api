@@ -24,7 +24,7 @@ exports.list = async (req, res,)=>{
 
         const { status: bookedSlotStatus,
             data: bookedSlotIds,
-            message:  bookedSlotMessage } = await bookingDb.bookingDatesCount({ course: search });
+            message:  bookedSlotMessage } = await bookingDb.bookedCourses({ course: search });
 
 
         if(!bookedSlotStatus) throw { message: bookedSlotMessage };
