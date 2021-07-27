@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
 
-const { orderController, orderValidator } = require('@api/order/v1');
+const { bookingController, bookingValidator } = require('@api/booking/v1');
 
-router.post('/create', orderValidator.book, orderController.book);
+router.post('/create', bookingValidator.book, bookingController.book);
 
 module.exports = router;
