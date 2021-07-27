@@ -47,9 +47,9 @@ exports.list = async (req, res,)=>{
             where: where,
         });
 
-        if(!status) throw { message }
+        if(!status) throw { message };
 
-        response.success(res, { code: 200,  message, data, pagination});
+        response.success(res, { code: 200,  message, data: ids, pagination });
 
     }
     catch (e) {
