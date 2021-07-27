@@ -12,6 +12,8 @@ exports.book = async (req, res, next)=>{
 
         if(!slot) throw { code: 409, message: 'Invalid slot' };
 
+        if(!dates) throw { code: 409, message: 'Invalid dates' };
+
         if(dates.length<=0) throw { code: 409, message: 'Invalid date!' };
 
         next()
