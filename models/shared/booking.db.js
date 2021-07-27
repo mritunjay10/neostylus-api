@@ -19,12 +19,12 @@ exports.bookingDatesCount = async (where) =>{
 
     try{
 
-        const datum = await Model.findAll({
+        const data = await Model.findAll({
             where,
             attributes: ['course'],
         });
 
-        return { status: true, data: datum[0], message: 'Booking dates!', pagination: null }
+        return { status: true, data, message: 'Booking dates!', pagination: null }
     }
     catch (e){
         return { status: false, data: null, message: 'Unable to fetch!', pagination: null }
