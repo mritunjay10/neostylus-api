@@ -1,5 +1,5 @@
 const { response } = require('@utils');
-const { slotDb } = require('@models/shared');
+const { slotDb, bookingDb } = require('@models/shared');
 
 
 exports.list = async (req, res,)=>{
@@ -21,6 +21,23 @@ exports.list = async (req, res,)=>{
 
         where['status'] = true;
         where['deleted'] = false;
+
+        const { status: bookedSlotStatus,
+            data: bookedSlotIds,
+            message:  bookedSlotMessage } = await bookingDb.bookingDatesCount({ course: search });
+
+
+        if(!bookedSlotStatus) throw { message: bookedSlotMessage };
+
+        const ids = [];
+
+        await bookedSlotIds.map(async each=>{
+           ids.push(each.slot)
+        });
+
+        where['id'] = {
+            [global.Op.notIn]: ids,
+        };
 
         const { status, data, message, pagination } = await slotDb.list({
             page: req.body.pagination.page,

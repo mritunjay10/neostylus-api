@@ -19,7 +19,10 @@ exports.bookingDatesCount = async (where) =>{
 
     try{
 
-        const datum = await Model.count({ where });
+        const datum = await Model.findAll({
+            where,
+            attributes: ['course'],
+        });
 
         return { status: true, data: datum[0], message: 'Booking dates!', pagination: null }
     }
