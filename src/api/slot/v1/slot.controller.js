@@ -49,7 +49,7 @@ exports.list = async (req, res,)=>{
 
         if(!status) throw { message };
 
-        response.success(res, { code: 200,  message, data: ids, pagination });
+        response.success(res, { code: 200,  message, data, pagination });
 
     }
     catch (e) {
