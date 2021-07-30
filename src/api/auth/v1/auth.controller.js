@@ -19,9 +19,9 @@ exports.login = async (req, res) =>{
       
     if(!status) throw { code: 503, message };
 
-    audience.push(data.role);
+    audience.push(data.role.toString());
 
-    const token = JWT.createToken({ id: data.id, type: data.type, status: data.status}, audience);
+    const token = await JWT.createToken({ id: data.id, role: data.role, status: data.status}, audience);
 
     data.setDataValue('password', null);
     data.setDataValue('role', null);
@@ -214,67 +214,6 @@ exports.forgotSetPassword = async(req, res)=>{
   }
 };
 
-exports.googleRegister = async (req, res,) =>{
-
-  try{
-
-    const { name, email, phone } = req.body;
-
-    const encPassword = await bcrypt.hash(uuid(), global.saltRounds);
-
-    const random = otpGenerator.generate(8, { digits: false, alphabets: true, upperCase: true, lowerCase: false, specialChars: false });
-
-    const { status, message, data, pagination } = await userDb.create({
-      name,
-      username: `${name.replace(' ', '')}-${random.toLowerCase()}`,
-      password: encPassword,
-      email,
-      phone,
-      emailVerified: true,
-    });
-
-    if(!status) throw { code: 409, message, data };
-
-    data.setDataValue('password', null);
-
-    response.success(res, { code: 201, message, data, pagination});
-
-  }
-  catch(e) {
-    response.error(res, e)
-  }
-};
-
-exports.googleLogin = async (req, res,) =>{
-
-  try{
-
-    const audience = [];
-
-    const { email } = req.body;
-
-    const { status, data, message, pagination } = await userDb.get({ email, emailVerified: true });
-
-    if(!status) throw { code: 503, message };
-
-    if(!data) throw { code: 401, message: 'Google login failed!' };
-
-    audience.push(data.role);
-
-    const token = JWT.createToken({ id: data.id, type: data.type, status: data.status}, audience);
-
-    data.setDataValue('password', null);
-    data.setDataValue('role', null);
-    data.setDataValue('token', token);
-
-    response.success(res, { code: 200, message: message, data, pagination });
-  }
-  catch(e) {
-    response.error(res, e)
-  }
-};
-
-
 exports.validateToken = async (req, res)=>{
     try{
 
@@ -286,9 +225,9 @@ exports.validateToken = async (req, res)=>{
 
         const audience = [];
 
-        audience.push(data.type.toString());
+        audience.push(data.role.toString());
 
-        const token = await JWT.createToken({ id: data.id, type: data.type}, audience);
+        const token = await JWT.createToken({ id: data.id, role: data.role}, audience);
 
         data.setDataValue('token', token);
 
