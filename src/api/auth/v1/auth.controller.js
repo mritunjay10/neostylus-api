@@ -278,9 +278,7 @@ exports.googleLogin = async (req, res,) =>{
 exports.validateToken = async (req, res)=>{
     try{
 
-        const { role } = req.params;
-
-        const { status, data, message } = await userDb.get({ id: req.userId, role });
+        const { status, data, message } = await userDb.get({ id: req.userId, role: req.role });
 
         if(!status) throw { code: 503, message };
 

@@ -17,6 +17,7 @@ exports.checkUser = async (req, res, next)=>{
     if(!(decoded.aud.includes('User'))) throw { code: 401, message: 'Unauthorized access!' };
 
     req.userId = decoded.user.id;
+    req.role = decoded.user.role;
     req.authorization = authorization;
 
     next()
@@ -24,6 +25,33 @@ exports.checkUser = async (req, res, next)=>{
   catch (e) {
     response.error(res, e)
   }
+};
+
+exports.checkAdmin = async (req, res, next)=>{
+    'use strict';
+    try{
+
+        const { authorization } = req.headers;
+
+        if(!authorization) throw  { code: 401, message: 'Invalid request token' };
+
+        const { status, message } = await JWT.verify(authorization);
+
+        if(!status) throw { code: 401, message  };
+
+        const decoded = JWT.decode(authorization);
+
+        if(!(decoded.aud.includes('Admin'))) throw { code: 401, message: 'Unauthorized access!' };
+
+        req.userId = decoded.user.id;
+        req.role = decoded.user.role;
+        req.authorization = authorization;
+
+        next()
+    }
+    catch (e) {
+        response.error(res, e)
+    }
 };
 
 exports.checkVerifyJWT = async (req, res, next)=>{
