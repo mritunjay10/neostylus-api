@@ -24,10 +24,6 @@ exports.list = async (req, res)=>{
             }
         }
 
-        if(req.role === 'User'){
-            where['user'] = req.userId;
-        }
-
         where['status'] = true;
         where['deleted'] = false;
 
