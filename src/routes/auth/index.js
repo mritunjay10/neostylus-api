@@ -13,10 +13,6 @@ router.post('/validate-token/admin', authorization.checkAdmin, authController.va
 
 router.post('/register', authValidator.register, authController.register);
 
-router.post('/google-register', authValidator.googleRegister, authController.googleRegister);
-
-router.post('/google-login', authValidator.googleLogin, authController.googleLogin);
-
 router.post('/send-otp', authValidator.sendOTP, authController.sendOTP);
 
 router.post('/verify-otp', authorization.checkVerifyJWT, authValidator.verifyOTP, authController.verifyOTP);
