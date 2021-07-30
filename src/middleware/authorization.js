@@ -17,7 +17,7 @@ exports.checkUser = async (req, res, next)=>{
     if(!(decoded.aud.includes('User'))) throw { code: 401, message: 'Unauthorized access!' };
 
     req.userId = decoded.user.id;
-    req.role = decoded.user.role;
+    req.role = 'User';
     req.authorization = authorization;
 
     next()
@@ -28,7 +28,6 @@ exports.checkUser = async (req, res, next)=>{
 };
 
 exports.checkAdmin = async (req, res, next)=>{
-    'use strict';
     try{
 
         const { authorization } = req.headers;
@@ -44,7 +43,7 @@ exports.checkAdmin = async (req, res, next)=>{
         if(!(decoded.aud.includes('Admin'))) throw { code: 401, message: 'Unauthorized access!' };
 
         req.userId = decoded.user.id;
-        req.role = decoded.user.role;
+        req.role = 'Admin';
         req.authorization = authorization;
 
         next()
