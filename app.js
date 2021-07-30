@@ -38,6 +38,7 @@ const { authorization, } = require('@middleware');
 const auth = require('@routes/auth');
 const common = require('@routes/common');
 const user = require('@routes/user');
+const admin = require('@routes/admin');
 
 const app = express();
 
@@ -53,6 +54,7 @@ app.use(cors());
 app.use('/api/v1/auth', auth);
 app.use('/api/v1/common', common);
 app.use('/api/v1/user', authorization.checkUser, user);
+app.use('/api/v1/admin', authorization.checkAdmin, admin);
 
 
 // catch 404 and forward to error handler

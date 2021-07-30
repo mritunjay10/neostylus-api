@@ -3,6 +3,6 @@ const router = express.Router();
 
 const { categoryValidator, categoryController, } = require('@api/category/v1');
 
-router.post('/categories/list', categoryValidator.list, categoryController.list);
+router.post('/category/list', categoryValidator.list, categoryController.list);
 
 module.exports = router;
