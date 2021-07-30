@@ -37,7 +37,10 @@ exports.list = async (req, res,) =>{
             };
         }
 
-        where['category'] = category;
+        if(category){
+            where['category'] = category;
+        }
+
         where['status'] = true;
         where['deleted'] = false;
 
