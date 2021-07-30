@@ -274,6 +274,33 @@ exports.googleLogin = async (req, res,) =>{
   }
 };
 
+
+exports.validateToken = async (req, res)=>{
+    try{
+
+        const { role } = req.params;
+
+        const { status, data, message } = await userDb.get({ id: req.userId, role });
+
+        if(!status) throw { code: 503, message };
+
+        if(!data) throw { code: 401, message: 'Invalid user!'};
+
+        const audience = [];
+
+        audience.push(data.type.toString());
+
+        const token = await JWT.createToken({ id: data.id, type: data.type}, audience);
+
+        data.setDataValue('token', token);
+
+        response.success(res, { code: 200, status: true, message, data, pagination: null });
+    }
+    catch(e) {
+        response.error(res, e)
+    }
+};
+
 exports.logOut = async (req, res)=>{
 
   try{
