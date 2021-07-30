@@ -42,12 +42,12 @@ const user = require('@routes/user');
 const app = express();
 
 
-app.use(cors());
 app.use(logger('dev'));
 app.use(helmet());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(expressSanitizer());
+app.use(cors());
 
 ////////////////////////////////    ADMIN
 app.use('/api/v1/auth', auth);
@@ -66,7 +66,7 @@ app.use((err, req, res, next)=> {
     res.locals.message = process.env.NODE_ENV === 'development' ? err.message: 'Some error occurred';
     res.locals.error = process.env.NODE_ENV === 'development' ? err : {};
 
-    res.status(500).json({ success: false, message: res.locals.error, data: null, pagination: null  })
+    res.status(500).json({ status: false, message: res.locals.error, data: null, pagination: null  })
 });
 
 module.exports = app;
