@@ -15,6 +15,20 @@ exports.all = async (req, res)=>{
     }
 };
 
+exports.create = async (req, res)=>{
+
+    try{
+
+        const { title } = req.body;
+
+        const { status, data, message } = await categoryDb.create({ title });
+
+        response.success(res, { code: 200, status, message, data , pagination: null });
+    }
+    catch (e){
+        response.error(res, e)
+    }
+};
 
 exports.list = async (req, res,) =>{
 

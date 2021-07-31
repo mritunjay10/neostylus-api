@@ -1,5 +1,20 @@
 const { response } = require('@utils');
 
+exports.create = (req, res, next) => {
+
+    try{
+
+        const { title } = req.body;
+
+        if(!title) throw { code: 409, message: 'Invalid title!' };
+
+        next()
+    }
+    catch (e){
+        response.error(res, e);
+    }
+};
+
 exports.list = (req, res, next) =>{
 
     try{
