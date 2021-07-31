@@ -6,7 +6,15 @@ exports.all = async (req, res)=>{
 
     try{
 
-        const { status, data, message } = await subCategoryDb.all({});
+        const { category } = req.params;
+
+        const where = {};
+
+        if(category){
+            where['category'] = category;
+        }
+
+        const { status, data, message } = await subCategoryDb.all(where);
 
         if(!status) throw { message };
 

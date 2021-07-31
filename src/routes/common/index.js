@@ -8,7 +8,7 @@ const { slotController, slotValidator } = require('@api/slot/v1');
 
 router.get('/category/all', categoryController.all);
 
-router.get('/sub-category/all', subCategoryController.all);
+router.get('/sub-category/all/:category', subCategoryController.all);
 
 router.post('/course/list', courseValidator.list, courseController.list);
 
