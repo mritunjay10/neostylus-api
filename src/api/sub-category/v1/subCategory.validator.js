@@ -1,4 +1,28 @@
 const { response } = require('@utils');
+const { categoryDb, } = require('@models/shared');
+
+exports.create = async (req, res, next) =>{
+
+    try{
+
+        const { title, category } = req.body;
+
+        if(!title) throw { message: 'Invalid title!' };
+
+        if(!category) throw { message: 'Invalid category!' };
+
+        const { status, data, message } = await categoryDb.get({ id: category });
+
+        if(!status) throw { message };
+
+        if(!data) throw { code: 409, message: 'Invalid category!' };
+
+        next()
+    }
+    catch (e){
+        response.error(res, e);
+    }
+};
 
 exports.list = (req, res, next) =>{
 

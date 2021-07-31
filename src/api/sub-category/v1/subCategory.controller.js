@@ -17,6 +17,25 @@ exports.all = async (req, res)=>{
     }
 };
 
+exports.create = async (req, res) =>{
+
+    try{
+
+        const { title, category } = req.body;
+
+        const { status, data, message } = await subCategoryDb.create({
+            title, category
+        });
+
+        if(!status) throw { message };
+
+        response.success(res, { code: 200, status, message, data , pagination: null });
+    }
+    catch (e){
+        response.error(res, e)
+    }
+};
+
 
 exports.list = async (req, res,) =>{
 

@@ -17,6 +17,25 @@ exports.create = async (datum)=>{
   }
 };
 
+exports.get = async (where) =>{
+
+    try{
+
+        where['status'] = true;
+        where['deleted'] = false;
+
+
+        const data = await Model.findOne({
+            attributes: ['id','title',],
+            where,
+        });
+
+        return { status: true, data, message: 'Category', pagination: null };
+    }
+    catch (e){
+        return { status: false, message: e.message || 'Unable to fetch categories', pagination: null }
+    }
+};
 
 exports.all = async ()=>{
 

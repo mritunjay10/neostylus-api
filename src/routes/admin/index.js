@@ -9,7 +9,11 @@ router.post('/category/create', categoryValidator.create, categoryController.cre
 
 router.post('/category/list', categoryValidator.list, categoryController.list);
 
+
+router.post('/sub-category/create', subCategoryValidator.create, subCategoryController.create);
+
 router.post('/sub-category/list/:category?', subCategoryValidator.list, subCategoryController.list);
+
 
 router.post('/course/list', courseValidator.list, courseController.list);
 
