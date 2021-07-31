@@ -11,7 +11,7 @@ exports.create = async (datum)=>{
 
       const data  = await Model.create(datum);
 
-      return { status: true, data, message: 'Created category!' };
+      return { status: true, data, message: 'Created sub-category!' };
   }
   catch (e){
       return { status: false, message: e.message || 'Unable to create category', pagination: null }
