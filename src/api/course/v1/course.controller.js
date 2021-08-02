@@ -8,12 +8,12 @@ exports.create = async (req, res)=>{
 
         const { category, subCategory, title, meta,
             description, totalSessions, sessionDuration,
-            costPerSession, mandatorySessionCount } = req.body;
+            costPerSession, } = req.body;
 
         const { status, data, message } = await courseDb.create( {
             category, subCategory, title, meta,
             description, totalSessions, sessionDuration,
-            costPerSession, mandatorySessionCount
+            costPerSession,
         });
 
         if(!status) throw { message };

@@ -38,11 +38,6 @@ module.exports = (sequelize, DataTypes)=> {
                 type: DataTypes.FLOAT(12,6),
                 allowNull: false,
             },
-            mandatorySessionCount: {
-                type: DataTypes.INTEGER,
-                allowNull: false,
-                defaultValue: 1,
-            },
             meta: {
                 type: DataTypes.JSON,
                 allowNull: true,
