@@ -6,12 +6,12 @@ exports.create = async (req, res)=>{
 
     try{
 
-        const { category, subCategory, title,
+        const { category, subCategory, title, meta,
             description, totalSessions, sessionDuration,
             costPerSession, mandatorySessionCount } = req.body;
 
         const { status, data, message } = await courseDb.create( {
-            category, subCategory, title,
+            category, subCategory, title, meta,
             description, totalSessions, sessionDuration,
             costPerSession, mandatorySessionCount
         });

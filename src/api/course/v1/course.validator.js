@@ -7,7 +7,7 @@ exports.create = (req, res, next)=>{
 
         const { category, subCategory, title,
             description, totalSession, sessionDuration,
-            costPerSession, mandatorySessionCount } = req.body;
+            meta, costPerSession, mandatorySessionCount } = req.body;
 
         if(!category) throw { code: 409,  message: 'Invalid category!' };
 
@@ -16,6 +16,8 @@ exports.create = (req, res, next)=>{
         if(!title) throw { code: 409,  message: 'Invalid title!' };
 
         if(!description) throw { code: 409,  message: 'Invalid description!' };
+
+        if(!meta) throw { code: 409,  message: 'Invalid meta!' };
 
         if(!totalSession) throw { code: 409,  message: 'Invalid total session!' };
 
