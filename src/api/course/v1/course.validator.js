@@ -1,5 +1,37 @@
 const { response } = require('@utils');
 
+
+exports.create = (req, res, next)=>{
+
+    try{
+
+        const { category, subCategory, title,
+            description, totalSessions, sessionDuration,
+            costPerSession, mandatorySessionCount } = req.body;
+
+        if(!category) throw { code: 409,  message: 'Invalid category!' };
+
+        if(!subCategory) throw { code: 409,  message: 'Invalid sub-category!' };
+
+        if(!title) throw { code: 409,  message: 'Invalid title!' };
+
+        if(!description) throw { code: 409,  message: 'Invalid description!' };
+
+        if(!totalSessions) throw { code: 409,  message: 'Invalid total session!' };
+
+        if(!sessionDuration) throw { code: 409,  message: 'Invalid session duration!' };
+
+        if(!costPerSession) throw { code: 409,  message: 'Invalid cost per session!' };
+
+        if(!mandatorySessionCount) throw { code: 409,  message: 'Invalid mandatory session!' };
+
+        next()
+    }
+    catch (e) {
+        response.error(res, e);
+    }
+};
+
 exports.list = (req, res, next) =>{
 
     try{

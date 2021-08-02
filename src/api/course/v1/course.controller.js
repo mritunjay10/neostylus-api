@@ -2,6 +2,30 @@ const { response } = require('@utils');
 const { courseDb } = require('@models/shared');
 
 
+exports.create = async (req, res)=>{
+
+    try{
+
+        const { category, subCategory, title,
+            description, totalSessions, sessionDuration,
+            costPerSession, mandatorySessionCount } = req.body;
+
+        const { status, data, message } = await courseDb.create( {
+            category, subCategory, title,
+            description, totalSessions, sessionDuration,
+            costPerSession, mandatorySessionCount
+        });
+
+        if(!status) throw { message };
+
+        response.success(res, { code: 201, status, message, data , pagination: null });
+    }
+    catch (e){
+        response.error(res, e);
+    }
+
+};
+
 exports.list = async (req, res)=>{
 
     try{

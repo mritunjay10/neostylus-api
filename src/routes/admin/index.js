@@ -15,6 +15,8 @@ router.post('/sub-category/create', subCategoryValidator.create, subCategoryCont
 router.post('/sub-category/list/:category?', subCategoryValidator.list, subCategoryController.list);
 
 
+router.post('/course/create', courseValidator.create, courseController.create);
+
 router.post('/course/list', courseValidator.list, courseController.list);
 
 module.exports = router;
