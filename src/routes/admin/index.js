@@ -4,6 +4,7 @@ const router = express.Router();
 const { categoryValidator, categoryController, } = require('@api/category/v1');
 const { subCategoryValidator, subCategoryController, } = require('@api/sub-category/v1');
 const { courseValidator, courseController, } = require('@api/course/v1');
+const { slotValidator, slotController, } = require('@api/slot/v1');
 
 router.post('/category/create', categoryValidator.create, categoryController.create);
 
@@ -18,5 +19,10 @@ router.post('/sub-category/list/:category?', subCategoryValidator.list, subCateg
 router.post('/course/create', courseValidator.create, courseController.create);
 
 router.post('/course/list', courseValidator.list, courseController.list);
+
+
+router.post('/slot/create', slotValidator.create, slotController.create);
+
+router.post('/slot/list', slotValidator.list, slotController.list);
 
 module.exports = router;

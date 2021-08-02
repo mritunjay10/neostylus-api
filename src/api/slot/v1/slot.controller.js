@@ -1,6 +1,26 @@
 const { response } = require('@utils');
 const { slotDb, bookingDb } = require('@models/shared');
 
+exports.create = async (req, res)=>{
+
+    try{
+
+        const { category, subCategory, course, startTime, endTime, } = req.body;
+
+        const { status, data, message, } = await slotDb.create({
+            category, subCategory, course, startTime, endTime
+        });
+
+        if(!status) throw { message };
+
+        response.success(res, { code: 201,  message, data, pagination: null });
+
+    }
+    catch (e){
+        response.error(res, e);
+    }
+};
+
 
 exports.list = async (req, res,)=>{
 

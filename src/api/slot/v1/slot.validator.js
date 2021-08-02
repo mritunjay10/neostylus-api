@@ -1,5 +1,29 @@
 const { response } = require('@utils');
 
+
+exports.create = (req, res, next) =>{
+
+    try{
+
+        const { category, subCategory, course, startTime, endTime, } = req.body;
+
+        if(!category) throw { code: 409, message: 'Invalid category!' };
+
+        if(!subCategory) throw { code: 409, message: 'Invalid sub-category!' };
+
+        if(!course) throw { code: 409, message: 'Invalid course!' };
+
+        if(!startTime) throw { code: 409, message: 'Invalid start time!' };
+
+        if(!endTime) throw { code: 409, message: 'Invalid end time!' };
+
+        next()
+    }
+    catch (e){
+        response.error(res, e);
+    }
+};
+
 exports.list = (req, res, next) =>{
 
     try{

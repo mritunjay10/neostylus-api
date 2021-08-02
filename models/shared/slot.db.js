@@ -9,10 +9,10 @@ exports.create = async (datum)=>{
 
         const data  = await Model.create(datum);
 
-        return { status: true, data, message: 'Created course!' };
+        return { status: true, data, message: 'Created slot!' };
     }
     catch (e){
-        return { status: false, message: e.message || 'Unable to create course', pagination: null }
+        return { status: false, message: e.message || 'Unable to create slot', pagination: null }
     }
 };
 
