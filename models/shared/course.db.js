@@ -70,3 +70,16 @@ exports.list = async (data) =>{
         return { status: false, data: null, message: e.message || 'Unable to fetch courses', pagination: null }
     }
 };
+
+exports.get = async (where) => {
+
+    try{
+
+        const data = await Model.findOne({ where });
+
+        return { status: true, data, pagination: null , message: 'Course!' }
+    }
+    catch (e){
+        return { status: false, data: null, message: e.message || 'Unable to fetch courses', pagination: null }
+    }
+};
