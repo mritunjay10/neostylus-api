@@ -60,6 +60,9 @@ exports.count = async (where) => {
 
     try{
 
+        where['deleted'] = false;
+        where['status'] = true;
+
         const data = await Model.count({ where });
 
         return { status: true, data, pagination: null , message: 'Slot count!' }
@@ -73,6 +76,9 @@ exports.get = async (where) => {
 
     try{
 
+        where['deleted'] = false;
+        where['status'] = true;
+
         const data = await Model.findOne({ where });
 
         return { status: true, data, pagination: null , message: 'Slots!' }
@@ -85,6 +91,9 @@ exports.get = async (where) => {
 exports.fetch = async (where) => {
 
     try{
+
+        where['deleted'] = false;
+        where['status'] = true;
 
         const data = await Model.findAll({ where });
 
