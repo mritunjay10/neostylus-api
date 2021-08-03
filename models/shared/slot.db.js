@@ -62,6 +62,8 @@ exports.count = async (where) => {
 
         const datum = await Model.count({ where });
 
+        console.log({datum})
+
         return { status: true, data: datum[0], pagination: null , message: 'Slot count!' }
     }
     catch (e){
