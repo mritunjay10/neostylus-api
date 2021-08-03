@@ -42,6 +42,10 @@ module.exports = (sequelize, DataTypes)=> {
                 type: DataTypes.JSON,
                 allowNull: true,
             },
+            typeOfCourses: {
+                type: DataTypes.JSON,
+                allowNull: true,
+            },
             status:{
                 type: DataTypes.BOOLEAN,
                 defaultValue: true,
