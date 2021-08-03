@@ -6,7 +6,7 @@
     "host": "31.220.109.108",
     "port": 3306,
     "dialect": "mysql",
-    "logging": false,
+    "logging": true,
     "pool": {
       "handleDisconnects": true,
       "max": 13,
