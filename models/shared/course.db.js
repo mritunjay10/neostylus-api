@@ -44,7 +44,7 @@ exports.list = async (data) =>{
                 [db.Sequelize.literal(
                     rawQueries.slotCount(`"slots"."course"`)
                 ),
-                    'reported']
+                    'slotCount']
             ],
             order: [
                 [data.sortBy, (data.descending === true ? 'DESC' : 'ASC')],
