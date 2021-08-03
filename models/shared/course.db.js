@@ -2,6 +2,8 @@ const db = require('@models');
 
 const Model = db.courses;
 
+const rawQueries = require('./rawQuries');
+
 Model.belongsTo(db.categories,  { sourceKey: 'id', foreignKey:'category', as:'courseCategoryDatum' });
 Model.belongsTo(db.subCategories,  { sourceKey: 'id', foreignKey:'subCategory', as:'courseSubCategoryDatum' });
 
@@ -38,7 +40,11 @@ exports.list = async (data) =>{
                     model : db.subCategories,
                     as: 'courseSubCategoryDatum',
                     attributes: ['id','title', 'imageUrl']
-                }
+                },
+                [db.Sequelize.literal(
+                    rawQueries.slotCount(`"slots"."course"`)
+                ),
+                    'reported']
             ],
             order: [
                 [data.sortBy, (data.descending === true ? 'DESC' : 'ASC')],
