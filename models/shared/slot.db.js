@@ -56,7 +56,7 @@ exports.list = async (data) =>{
 };
 
 
-exports.get = async (where) => {
+exports.count = async (where) => {
 
     try{
 
