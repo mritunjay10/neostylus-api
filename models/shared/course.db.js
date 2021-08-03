@@ -45,7 +45,7 @@ exports.list = async (data) =>{
             attributes: {
               include: [
                   [db.Sequelize.literal(
-                      rawQueries.slotCount(`"slots"."course"`)
+                      rawQueries.slotCount(`"courses"."id"`)
                   ),
                       'slotCount']
               ]
