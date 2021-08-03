@@ -17,16 +17,14 @@ exports.create = async (req, res, next) =>{
 
         if(!endTime) throw { code: 409, message: 'Invalid end time!' };
 
-        const { status, data, message, } = await slotDb.count({ where: {
-
+        const { status, data, message, } = await slotDb.count({
             startTime: {
                 [global.Op.gte]: startTime
             },
             endTime: {
-                [global.Op.lt]: endTime
+                [global.Op.lte]: endTime
             }
-
-        }});
+        });
 
         console.log(data);
 
