@@ -94,3 +94,40 @@ exports.fetch = async (where) => {
         return { status: false, data: null, message: e.message || 'Unable to fetch slots', pagination: null }
     }
 };
+
+exports.update = async (data) =>{
+
+    try{
+
+        let body ={};
+
+        for(let key in data.body) {
+
+            if(data.body.hasOwnProperty(key)){
+
+                if(data.body[key]){
+                    body[key] = data.body[key];
+                }
+            }
+        }
+
+        const datum = await Model.update(body, { where: { id: data.id } });
+
+        return { status: true, data: datum[0], pagination: null , message: 'Updated successfully' }
+    }
+    catch (e){
+        return { status: false, data: null, message: e.message || 'Unable to update', pagination: false }
+    }
+};
+
+exports.delete = async (where) =>{
+
+    try{
+        const datum = await Model.update({ deleted: true }, { where });
+
+        return { status: true, data: datum[0], pagination: null , message: 'Deleted successfully' }
+    }
+    catch (e){
+        return { status: false, data: null, message: e.message || 'Unable to delete', pagination: false }
+    }
+};

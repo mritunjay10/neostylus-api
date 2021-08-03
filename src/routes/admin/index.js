@@ -27,4 +27,6 @@ router.post('/slot/create', slotValidator.create, slotController.create);
 
 router.post('/slot/list', slotValidator.list, slotController.list);
 
+router.delete('/slot/delete/:id', slotValidator.id, slotController.delete);
+
 module.exports = router;

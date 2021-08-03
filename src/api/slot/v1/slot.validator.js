@@ -1,6 +1,22 @@
 const { response } = require('@utils');
 const { slotDb, courseDb } = require('@models/shared');
 
+
+exports.id = async (req, res, next)=>{
+
+    try{
+
+        const { id } = req.params;
+
+        if(!id) throw { code: 409, message: 'Invalid slot!' };
+
+        next()
+    }
+    catch (e){
+        response.error(res, e);
+    }
+};
+
 exports.create = async (req, res, next) =>{
 
     try{

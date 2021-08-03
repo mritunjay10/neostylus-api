@@ -102,3 +102,20 @@ exports.list = async (req, res,)=>{
         response.error(res, e);
     }
 };
+
+exports.delete = async (req, res,)=>{
+
+    try{
+
+        const { id } =req.params;
+
+        const { status, data, message } =  await slotDb.delete({ id });
+
+        if(!status) throw { code: 409, message };
+
+        response.success(res, { code: 200,  message, data, pagination: null });
+    }
+    catch (e){
+        response.error(res, e);
+    }
+};
