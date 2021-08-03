@@ -22,6 +22,27 @@ exports.create = async (req, res)=>{
 };
 
 
+exports.all = async (req, res) =>{
+
+    try{
+
+        const { filterBy, search } = req.body;
+
+        const where = {};
+        where[filterBy] = search;
+
+        const { status, data, message, } = await slotDb.fetch(where);
+
+        if(!status) throw { message };
+
+        response.success(res, { code: 200,  message, data, pagination: null });
+
+    }
+    catch (e){
+        response.error(res, e);
+    }
+};
+
 exports.list = async (req, res,)=>{
 
     try{

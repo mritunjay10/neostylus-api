@@ -21,6 +21,8 @@ router.post('/course/create', courseValidator.create, courseController.create);
 router.post('/course/list', courseValidator.list, courseController.list);
 
 
+router.post('/slot/all', slotController.all);
+
 router.post('/slot/create', slotValidator.create, slotController.create);
 
 router.post('/slot/list', slotValidator.list, slotController.list);

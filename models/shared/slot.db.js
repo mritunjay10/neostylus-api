@@ -68,3 +68,16 @@ exports.count = async (where) => {
         return { status: false, data: null, message: e.message || 'Unable to fetch slots', pagination: null }
     }
 };
+
+exports.fetch = async (where) => {
+
+    try{
+
+        const data = await Model.findAll({ where });
+
+        return { status: true, data, pagination: null , message: 'Slots!' }
+    }
+    catch (e){
+        return { status: false, data: null, message: e.message || 'Unable to fetch slots', pagination: null }
+    }
+};
