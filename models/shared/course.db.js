@@ -41,11 +41,15 @@ exports.list = async (data) =>{
                     as: 'courseSubCategoryDatum',
                     attributes: ['id','title', 'imageUrl']
                 },
-                [db.Sequelize.literal(
-                    rawQueries.slotCount(`"slots"."course"`)
-                ),
-                    'slotCount']
             ],
+            attributes: {
+              include: [
+                  [db.Sequelize.literal(
+                      rawQueries.slotCount(`"slots"."course"`)
+                  ),
+                      'slotCount']
+              ]
+            },
             order: [
                 [data.sortBy, (data.descending === true ? 'DESC' : 'ASC')],
             ],
