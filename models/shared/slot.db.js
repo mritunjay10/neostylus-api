@@ -60,11 +60,9 @@ exports.count = async (where) => {
 
     try{
 
-        const datum = await Model.count({ where });
+        const data = await Model.count({ where });
 
-        console.log({datum})
-
-        return { status: true, data: datum[0], pagination: null , message: 'Slot count!' }
+        return { status: true, data, pagination: null , message: 'Slot count!' }
     }
     catch (e){
         return { status: false, data: null, message: e.message || 'Unable to fetch slots', pagination: null }
