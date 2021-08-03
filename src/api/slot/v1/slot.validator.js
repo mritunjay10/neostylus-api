@@ -1,5 +1,5 @@
 const { response } = require('@utils');
-const { slotDb } = require('@models/shared');
+const { slotDb, courseDb } = require('@models/shared');
 
 exports.create = async (req, res, next) =>{
 
@@ -26,12 +26,12 @@ exports.create = async (req, res, next) =>{
 
         if(slotCountData>0) throw { code: 409, message: 'Invalid start-time and end-time' };
 
-        const { status: slotStatus, data: slotData, message: slotMessage } = await slotDb.get({ course });
+        const { status: courseStatus, data: courseData, message: courseMessage } = await courseDb.get({ course });
 
-        if(!slotStatus) throw { code: 409, message: slotMessage };
+        if(!courseStatus) throw { code: 409, message: courseMessage };
 
-        req.category = slotData.category;
-        req.subCategory = slotData.subCategory;
+        req.category = courseData.category;
+        req.subCategory = courseData.subCategory;
 
         next()
     }
