@@ -1,7 +1,7 @@
 const { response } = require('@utils');
+const { slotDb } = require('@models/shared');
 
-
-exports.create = (req, res, next) =>{
+exports.create = async (req, res, next) =>{
 
     try{
 
@@ -16,6 +16,21 @@ exports.create = (req, res, next) =>{
         if(!startTime) throw { code: 409, message: 'Invalid start time!' };
 
         if(!endTime) throw { code: 409, message: 'Invalid end time!' };
+
+        const { status, data, message, } = await slotDb.count({ where: {
+
+            startTime: {
+                [global.Op.between]: startTime
+            },
+            endTime: {
+                [global.Op.lt]: endTime
+            }
+
+        }});
+
+        console.log(data);
+
+        if(!status) throw { code: 409, message };
 
         next()
     }
