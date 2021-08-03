@@ -5,10 +5,12 @@ exports.create = async (req, res)=>{
 
     try{
 
-        const { category, subCategory, course, startTime, endTime, } = req.body;
+        const { course, startTime, endTime, } = req.body;
 
         const { status, data, message, } = await slotDb.create({
-            category, subCategory, course, startTime, endTime
+            category: req.category,
+            subCategory: req.subCategory,
+            course, startTime, endTime
         });
 
         if(!status) throw { message };

@@ -5,11 +5,7 @@ exports.create = async (req, res, next) =>{
 
     try{
 
-        const { category, subCategory, course, startTime, endTime, } = req.body;
-
-        if(!category) throw { code: 409, message: 'Invalid category!' };
-
-        if(!subCategory) throw { code: 409, message: 'Invalid sub-category!' };
+        const { course, startTime, endTime, } = req.body;
 
         if(!course) throw { code: 409, message: 'Invalid course!' };
 
@@ -17,7 +13,7 @@ exports.create = async (req, res, next) =>{
 
         if(!endTime) throw { code: 409, message: 'Invalid end time!' };
 
-        const { status, data, message, } = await slotDb.count({
+        const { status: slotCountStatus, data: slotCountData, message: slotCountMessage, } = await slotDb.count({
             startTime: {
                 [global.Op.gte]: startTime
             },
@@ -26,11 +22,16 @@ exports.create = async (req, res, next) =>{
             }
         });
 
-        console.log(data);
+        if(!slotCountStatus) throw { code: 409, message: slotCountMessage };
 
-        if(!status) throw { code: 409, message };
+        if(slotCountData>0) throw { code: 409, message: 'Invalid start-time and end-time' };
 
-        if(data>0) throw { code: 409, message: 'Invalid start-time and end-time' };
+        const { status: slotStatus, data: slotData, message: slotMessage } = await slotDb.get({ course });
+
+        if(!slotStatus) throw { code: 409, message: slotMessage };
+
+        req.category = slotData.category;
+        req.subCategory = slotData.subCategory;
 
         next()
     }

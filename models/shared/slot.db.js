@@ -69,6 +69,19 @@ exports.count = async (where) => {
     }
 };
 
+exports.get = async (where) => {
+
+    try{
+
+        const data = await Model.findOne({ where });
+
+        return { status: true, data, pagination: null , message: 'Slots!' }
+    }
+    catch (e){
+        return { status: false, data: null, message: e.message || 'Unable to fetch slots', pagination: null }
+    }
+};
+
 exports.fetch = async (where) => {
 
     try{
