@@ -29,7 +29,10 @@ exports.all = async (req, res) =>{
         const { filterBy, search } = req.body;
 
         const where = {};
-        where[filterBy] = search;
+
+        if(filterBy){
+            where[filterBy] = search;
+        }
 
         const { status, data, message, } = await slotDb.fetch(where);
 
