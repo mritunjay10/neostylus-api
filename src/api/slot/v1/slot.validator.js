@@ -26,7 +26,7 @@ exports.create = async (req, res, next) =>{
 
         if(slotCountData>0) throw { code: 409, message: 'Invalid start-time and end-time' };
 
-        const { status: courseStatus, data: courseData, message: courseMessage } = await courseDb.get({ course });
+        const { status: courseStatus, data: courseData, message: courseMessage } = await courseDb.get({ id: course });
 
         if(!courseStatus) throw { code: 409, message: courseMessage };
 
