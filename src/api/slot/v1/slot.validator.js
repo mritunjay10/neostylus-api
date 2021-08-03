@@ -20,7 +20,7 @@ exports.create = async (req, res, next) =>{
         const { status, data, message, } = await slotDb.count({ where: {
 
             startTime: {
-                [global.Op.between]: startTime
+                [global.Op.gt]: startTime
             },
             endTime: {
                 [global.Op.lt]: endTime
@@ -31,6 +31,8 @@ exports.create = async (req, res, next) =>{
         console.log(data);
 
         if(!status) throw { code: 409, message };
+
+        if(data>0) throw { code: 409, message: 'Invalid start-time and end-time' };
 
         next()
     }
