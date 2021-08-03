@@ -20,7 +20,7 @@ exports.create = async (req, res, next) =>{
         const { status, data, message, } = await slotDb.count({ where: {
 
             startTime: {
-                [global.Op.gt]: startTime
+                [global.Op.gte]: startTime
             },
             endTime: {
                 [global.Op.lt]: endTime
