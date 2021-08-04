@@ -8,6 +8,14 @@ module.exports = (sequelize, DataTypes)=> {
                 primaryKey: true,
                 autoIncrement: true,
             },
+            category:{
+                type: DataTypes.INTEGER,
+                allowNull: false,
+            },
+            subCategory:{
+                type: DataTypes.INTEGER,
+                allowNull: false,
+            },
             title: {
                 type: DataTypes.STRING(225),
                 allowNull: false,
@@ -30,19 +38,27 @@ module.exports = (sequelize, DataTypes)=> {
                 defaultValue: 1,
             },
             sessionDuration:{
-                type: DataTypes.INTEGER,
+                type: Sequelize.INTEGER,
                 allowNull: false,
                 defaultValue: 1,
             },
-            costPerSession: {
+            costPerSessionFaceToFaceINR: {
+                type: DataTypes.FLOAT(12,6),
+                allowNull: false,
+            },
+            costPerSessionFaceToFaceINT: {
+                type: DataTypes.FLOAT(12,6),
+                allowNull: false,
+            },
+            costPerSessionOnlineINR: {
+                type: DataTypes.FLOAT(12,6),
+                allowNull: false,
+            },
+            costPerSessionOnlineINT: {
                 type: DataTypes.FLOAT(12,6),
                 allowNull: false,
             },
             meta: {
-                type: DataTypes.JSON,
-                allowNull: true,
-            },
-            typeOfCourses: {
                 type: DataTypes.JSON,
                 allowNull: true,
             },
@@ -51,7 +67,7 @@ module.exports = (sequelize, DataTypes)=> {
                 defaultValue: true,
             },
             deleted:{
-                type: DataTypes.BOOLEAN,
+                type: Sequelize.BOOLEAN,
                 defaultValue: false,
             },
             createdAt: {
