@@ -38,7 +38,7 @@ module.exports = (sequelize, DataTypes)=> {
                 defaultValue: 1,
             },
             sessionDuration:{
-                type: Sequelize.INTEGER,
+                type: DataTypes.INTEGER,
                 allowNull: false,
                 defaultValue: 1,
             },
@@ -67,7 +67,7 @@ module.exports = (sequelize, DataTypes)=> {
                 defaultValue: true,
             },
             deleted:{
-                type: Sequelize.BOOLEAN,
+                type: DataTypes.BOOLEAN,
                 defaultValue: false,
             },
             createdAt: {

@@ -7,7 +7,9 @@ exports.create = (req, res, next)=>{
 
         const { category, subCategory, title,
             description, totalSessions, sessionDuration,
-            meta, costPerSession, typeOfCourses } = req.body;
+            costPerSessionFaceToFaceINR, costPerSessionFaceToFaceINT,
+            costPerSessionOnlineINR, costPerSessionOnlineINT,
+            meta } = req.body;
 
         if(!category) throw { code: 409,  message: 'Invalid category!' };
 
@@ -23,11 +25,13 @@ exports.create = (req, res, next)=>{
 
         if(!sessionDuration) throw { code: 409,  message: 'Invalid session duration!' };
 
-        if(!costPerSession) throw { code: 409,  message: 'Invalid cost per session!' };
+        if(!costPerSessionFaceToFaceINR) throw { code: 409,  message: 'Invalid cost per session (Face-to-face) INR!' };
 
-        if(!typeOfCourses) throw { code: 409,  message: 'Invalid type of courses!' };
+        if(!costPerSessionFaceToFaceINT) throw { code: 409,  message: 'Invalid cost per session (Face-to-face) USD!' };
 
-        if(typeOfCourses.length <= 0) throw { code: 409, message: 'Invalid type of courses!' };
+        if(!costPerSessionOnlineINR) throw { code: 409,  message: 'Invalid cost per session (Online) INR!' };
+
+        if(!costPerSessionOnlineINT) throw { code: 409,  message: 'Invalid cost per session (Online) INR!' };
 
         next()
     }
