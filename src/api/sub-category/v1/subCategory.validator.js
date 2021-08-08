@@ -49,3 +49,25 @@ exports.list = (req, res, next) =>{
         response.error(res, e);
     }
 };
+
+
+exports.update = (req, res, next) => {
+
+    try{
+
+        const { id } = req.params;
+
+        const { category, title } = req.body;
+
+        if(!id) throw { code: 409, message: 'Invalid id!' }
+
+        if(!category) throw { code: 409, message: 'Invalid category!' }
+
+        if(!title) throw { code: 409, message: 'Invalid title!' }
+
+        next()
+    }
+    catch (e){
+        response.error(res, e);
+    }
+}

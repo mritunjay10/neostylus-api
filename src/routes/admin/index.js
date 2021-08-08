@@ -6,6 +6,7 @@ const { subCategoryValidator, subCategoryController, } = require('@api/sub-categ
 const { courseValidator, courseController, } = require('@api/course/v1');
 const { slotValidator, slotController, } = require('@api/slot/v1');
 
+
 router.post('/category/create', categoryValidator.create, categoryController.create);
 
 router.post('/category/list', categoryValidator.list, categoryController.list);
@@ -16,6 +17,8 @@ router.put('/category/:id', categoryValidator.update, categoryController.update)
 router.post('/sub-category/create', subCategoryValidator.create, subCategoryController.create);
 
 router.post('/sub-category/list/:category?', subCategoryValidator.list, subCategoryController.list);
+
+router.put('/sub-category/:id', subCategoryValidator.update, subCategoryController.update);
 
 
 router.post('/course/create', courseValidator.create, courseController.create);
