@@ -68,3 +68,24 @@ exports.list = async (req, res,) =>{
         response.error(res, e);
     }
 };
+
+exports.update = async (req, res, ) =>{
+
+    try{
+
+        const { id } = req.params;
+        const { title } = req.body;
+
+        const { status, data, message } = await categoryDb.update({
+            where: { id },
+            body: { title }
+        })
+
+        if(!status) throw { message }
+
+        response.success(res, { code: 200, message, data, pagination: null });
+    }
+    catch (e){
+        response.error(res, e);
+    }
+};

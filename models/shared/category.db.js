@@ -85,3 +85,27 @@ exports.list = async(data)=>{
     }
 
 };
+
+exports.update = async ({where, body})=>{
+    try{
+
+        const datum = await Model.update(body, { where });
+
+        return { status: true, data: datum[0], message: 'Category updated!', pagination: null, }
+    }
+    catch (e){
+        return { status: false, data: null, message: e.message, pagination: null }
+    }
+}
+
+exports.delete = async (where) =>{
+
+    try{
+        const datum = await Model.update({ deleted: true }, { where });
+
+        return { success: true, data: datum[0], pagination: null , message: 'Deleted successfully' }
+    }
+    catch (e){
+        return { success: false, data: null, message: e.message || 'Unable to delete', pagination: false }
+    }
+};

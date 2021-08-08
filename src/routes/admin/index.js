@@ -10,6 +10,8 @@ router.post('/category/create', categoryValidator.create, categoryController.cre
 
 router.post('/category/list', categoryValidator.list, categoryController.list);
 
+router.put('/category/:id', categoryValidator.update, categoryController.update);
+
 
 router.post('/sub-category/create', subCategoryValidator.create, subCategoryController.create);
 
