@@ -72,3 +72,34 @@ exports.list = async (req, res)=>{
         response.error(res, e);
     }
 };
+
+exports.update = async (req, res, )=>{
+
+    try{
+
+        const { id } = req.params;
+        const { category, subCategory, title,
+            description, totalSessions, sessionDuration,
+            costPerSessionFaceToFaceINR, costPerSessionFaceToFaceINT,
+            costPerSessionOnlineINR, costPerSessionOnlineINT,
+            meta } = req.body;
+
+        const { status, data, message } = await courseDb.update({
+            where: { id },
+            body: { category, subCategory, title,
+                description, totalSessions, sessionDuration,
+                costPerSessionFaceToFaceINR, costPerSessionFaceToFaceINT,
+                costPerSessionOnlineINR, costPerSessionOnlineINT,
+                meta }
+        })
+
+        if(!status) throw { message }s
+
+        if(!status) throw { message };
+
+        response.success(res, { code: 200, message, data, pagination});
+    }
+    catch (e) {
+        response.error(res, e);
+    }
+}

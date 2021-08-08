@@ -65,3 +65,19 @@ exports.list = (req, res, next) =>{
         response.error(res, e);
     }
 };
+
+
+exports.update = (req, res, next) => {
+
+    try{
+
+        const { id } = req.params;
+
+        if(!id) throw { code: 409, message: 'Invalid id!' }
+
+        next()
+    }
+    catch (e){
+        response.error(res, e);
+    }
+}

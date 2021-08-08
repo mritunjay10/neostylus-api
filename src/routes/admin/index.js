@@ -25,6 +25,8 @@ router.post('/course/create', courseValidator.create, courseController.create);
 
 router.post('/course/list', courseValidator.list, courseController.list);
 
+router.put('/course/:id', courseValidator.update, courseValidator.create, courseController.update);
+
 
 router.post('/slot/all', slotController.all);
 
