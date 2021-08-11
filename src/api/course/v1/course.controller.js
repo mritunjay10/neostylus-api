@@ -93,8 +93,6 @@ exports.update = async (req, res, )=>{
                 meta }
         })
 
-        if(!status) throw { message }s
-
         if(!status) throw { message };
 
         response.success(res, { code: 200, message, data, pagination});
