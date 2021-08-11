@@ -95,7 +95,7 @@ exports.update = async (req, res, )=>{
 
         if(!status) throw { message };
 
-        response.success(res, { code: 200, message, data, pagination});
+        response.success(res, { code: 200, message, data, pagination: null});
     }
     catch (e) {
         response.error(res, e);
