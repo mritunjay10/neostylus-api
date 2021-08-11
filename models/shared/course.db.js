@@ -83,3 +83,28 @@ exports.get = async (where) => {
         return { status: false, data: null, message: e.message || 'Unable to fetch courses', pagination: null }
     }
 };
+
+exports.update = async (data) =>{
+
+    try{
+
+        let body ={};
+
+        for(let key in data.body) {
+
+            if(data.body.hasOwnProperty(key)){
+
+                if(data.body[key]){
+                    body[key] = data.body[key];
+                }
+            }
+        }
+
+        const datum = await Model.update(body, { where: data.where });
+
+        return { status: true, data: datum[0], pagination: null , message: 'Updated successfully' }
+    }
+    catch (e){
+        return { status: false, data: null, message: e.message || 'Unable to update', pagination: false }
+    }
+};
