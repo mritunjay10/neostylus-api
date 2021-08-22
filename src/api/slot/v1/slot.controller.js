@@ -57,8 +57,7 @@ exports.list = async (req, res,)=>{
 
         if(search){
 
-            if(!['course']
-                    .includes(filterBy)) throw { code: 409, message: 'Invalid filter by' };
+            if(!['course'].includes(filterBy)) throw { code: 409, message: 'Invalid filter by' };
 
             if(strict){
                 where[filterBy] = search
