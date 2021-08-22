@@ -69,7 +69,7 @@ exports.list = async (req, res,) =>{
     }
 };
 
-exports.update = async (req, res, ) =>{
+exports.update = async (req, res, ) => {
 
     try{
 

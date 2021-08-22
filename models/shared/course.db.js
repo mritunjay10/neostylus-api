@@ -84,6 +84,18 @@ exports.get = async (where) => {
     }
 };
 
+exports.delete = async (where) =>{
+
+    try{
+        const datum = await Model.update({ deleted: true }, { where });
+
+        return { status: true, data: datum[0], pagination: null , message: 'Deleted successfully' }
+    }
+    catch (e){
+        return { status: false, data: null, message: e.message || 'Unable to delete', pagination: false }
+    }
+};
+
 exports.update = async (data) =>{
 
     try{
