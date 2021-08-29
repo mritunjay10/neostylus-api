@@ -48,6 +48,8 @@ exports.list = async (req, res,) =>{
             };
         }
 
+        console.log(req.role)
+
         if(req.role !=='Admin'){
             where['user'] = req.userId;
         }
