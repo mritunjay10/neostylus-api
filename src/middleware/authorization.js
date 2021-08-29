@@ -14,8 +14,6 @@ exports.checkUser = async (req, res, next)=>{
 
     const decoded = JWT.decode(authorization);
 
-    if(!(decoded.aud.includes('User'))) throw { code: 401, message: 'Unauthorized access!' };
-
     req.userId = decoded.user.id;
     req.role = decoded.user.role;
     req.isAdmin = decoded.user.role === 'Admin';
