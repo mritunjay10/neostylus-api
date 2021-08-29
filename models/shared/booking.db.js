@@ -47,6 +47,13 @@ exports.list = async(data)=>{
             order: [
                 [data.sortBy, (data.descending === true ? 'DESC' : 'ASC')],
             ],
+            include:[
+                {
+                    model: db.courses,
+                    as: 'bookingCourseDatum',
+                    where:{ status: true, }
+                }
+            ]
         });
 
         const pagination = {
