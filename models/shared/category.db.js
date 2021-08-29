@@ -83,7 +83,6 @@ exports.list = async(data)=>{
 
         return { status: false, data: null, message: e.message, pagination: null }
     }
-
 };
 
 exports.update = async ({where, body})=>{
