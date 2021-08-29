@@ -5,8 +5,6 @@ const { categoryValidator, categoryController, } = require('@api/category/v1');
 const { subCategoryValidator, subCategoryController, } = require('@api/sub-category/v1');
 const { courseValidator, courseController, } = require('@api/course/v1');
 const { slotValidator, slotController, } = require('@api/slot/v1');
-const { bookingValidator, bookingController, } = require('@api/booking/v1');
-
 
 router.post('/category/create', categoryValidator.create, categoryController.create);
 
@@ -36,8 +34,6 @@ router.post('/slot/create', slotValidator.create, slotController.create);
 router.post('/slot/list', slotValidator.list, slotController.list);
 
 router.delete('/slot/delete/:id', slotValidator.id, slotController.delete);
-
-router.post('/booking/list', bookingValidator.list, bookingController.list);
 
 
 module.exports = router;
