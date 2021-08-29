@@ -2,6 +2,8 @@ const db = require('@models');
 
 const Model = db.bookings;
 
+Model.belongsTo(db.courses,  { sourceKey: 'id', foreignKey:'course', as:'bookingCourseDatum' });
+
 exports.create = async (data)=>{
 
     try{

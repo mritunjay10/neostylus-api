@@ -7,6 +7,8 @@ const rawQueries = require('./rawQuries');
 Model.belongsTo(db.categories,  { sourceKey: 'id', foreignKey:'category', as:'courseCategoryDatum' });
 Model.belongsTo(db.subCategories,  { sourceKey: 'id', foreignKey:'subCategory', as:'courseSubCategoryDatum' });
 
+Model.hasMany(db.bookings,  { sourceKey: 'id', foreignKey:'course', as:'bookingCourseDatum' });
+
 exports.create = async (datum)=>{
     try{
 
