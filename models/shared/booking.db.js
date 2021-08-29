@@ -51,6 +51,7 @@ exports.list = async(data)=>{
                 {
                     model: db.courses,
                     as: 'bookingCourseDatum',
+                    attributes: ['id','title'],
                     where:{ status: true, }
                 }
             ]
