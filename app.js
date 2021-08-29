@@ -52,7 +52,7 @@ app.use(cors());
 
 ////////////////////////////////    ADMIN
 app.use('/api/v1/auth', auth);
-app.use('/api/v1/common'  authorization.checkUser, common);
+app.use('/api/v1/common', authorization.checkUser, common);
 app.use('/api/v1/user', authorization.checkUser, user);
 app.use('/api/v1/admin', authorization.checkUser, admin);
 
