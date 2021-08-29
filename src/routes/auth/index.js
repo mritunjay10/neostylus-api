@@ -9,7 +9,7 @@ router.post('/login', authValidator.login, authController.login);
 
 router.post('/validate-token/user', authorization.checkUser, authController.validateToken);
 
-router.post('/validate-token/admin', authorization.checkAdmin, authController.validateToken);
+router.post('/validate-token/admin', authorization.checkUser, authController.validateToken);
 
 router.post('/register', authValidator.register, authController.register);
 
