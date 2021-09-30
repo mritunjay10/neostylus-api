@@ -3,7 +3,7 @@
     "username": "neostylus",
     "password": "693dc6cd-06b0-40e2-afa7-ae48ecf2c1d7",
     "database": "neostylus",
-    "host": "31.220.109.108",
+    "host": "65.0.211.59",
     "port": 3306,
     "dialect": "mysql",
     "logging": true,

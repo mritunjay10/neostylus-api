@@ -50,7 +50,6 @@ exports.list = (req, res, next) =>{
     }
 };
 
-
 exports.update = (req, res, next) => {
 
     try{
