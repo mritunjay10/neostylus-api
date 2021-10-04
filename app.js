@@ -59,7 +59,7 @@ app.use('/api/v1/admin', authorization.checkUser, admin);
 
 // catch 404 and forward to error handler
 app.use((req, res, next)=> {
-    res.status(404).json({ success: false, message: 'NO PAGE FOUND', data: null, pagination: null  })
+    res.status(404).json({ status: false, message: 'NO PAGE FOUND', data: null, pagination: null  })
 });
 
 // error handler
