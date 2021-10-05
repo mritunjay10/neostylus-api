@@ -13,6 +13,7 @@ exports.image = multer({
     acl: 'public-read',
     contentType: multerS3.AUTO_CONTENT_TYPE,
     key: async function (req, file, cb) {
+      console.log(file)
       const ext = path.extname(file.originalname);
       const fileName = uuid()+ext;
       console.log(`${process.env.S3_OTHER_URL}${fileName}`)
