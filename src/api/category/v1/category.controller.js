@@ -11,7 +11,7 @@ exports.create = async (req, res)=>{
 
     const { status, data, message } = await categoryDb.create({ title, imageUrl: req.image });
 
-    response.success(res, { code: 200, status, message, data , pagination: null });
+    response.success(res, { code: 201, status, message, data , pagination: null });
   }
   catch (e){
     response.error(res, e)
