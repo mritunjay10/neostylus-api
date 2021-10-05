@@ -41,6 +41,8 @@ exports.courseImage = multer({
       else{
         req.image = `${process.env.S3_BASE_URL}${fileName}`;
       }
+      console.log(req.coverImage)
+      console.log(req.image)
       cb(null, fileName);
     },
   }),
