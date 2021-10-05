@@ -12,10 +12,11 @@ exports.create = async (req, res)=>{
       costPerSessionOnlineINR, costPerSessionOnlineINT,
       meta } = req.body;
 
+
     const { status, data, message } = await courseDb.create( {
       category, subCategory, title,
-      image: req.image,
-      coverImage: req.coverImage,
+      imageUrl: req.image,
+      coverImageUrl: req.coverImage,
       description, totalSessions, sessionDuration,
       costPerSessionFaceToFaceINR, costPerSessionFaceToFaceINT,
       costPerSessionOnlineINR, costPerSessionOnlineINT,
