@@ -1,12 +1,13 @@
 const { response } = require('@utils');
 const { categoryDb } = require('@models/shared');
 
-
-exports.all = async (req, res)=>{
+exports.create = async (req, res)=>{
 
   try{
 
-    const { status, data, message } = await categoryDb.all();
+    const { title } = req.body;
+
+    const { status, data, message } = await categoryDb.create({ title, imageUrl: req.image });
 
     response.success(res, { code: 200, status, message, data , pagination: null });
   }
@@ -15,13 +16,11 @@ exports.all = async (req, res)=>{
   }
 };
 
-exports.create = async (req, res)=>{
+exports.all = async (req, res)=>{
 
   try{
 
-    const { title } = req.body;
-
-    const { status, data, message } = await categoryDb.create({ title });
+    const { status, data, message } = await categoryDb.all();
 
     response.success(res, { code: 200, status, message, data , pagination: null });
   }
