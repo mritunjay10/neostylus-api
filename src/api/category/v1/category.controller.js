@@ -4,88 +4,88 @@ const { categoryDb } = require('@models/shared');
 
 exports.all = async (req, res)=>{
 
-    try{
+  try{
 
-        const { status, data, message } = await categoryDb.all();
+    const { status, data, message } = await categoryDb.all();
 
-        response.success(res, { code: 200, status, message, data , pagination: null });
-    }
-    catch (e){
-        response.error(res, e)
-    }
+    response.success(res, { code: 200, status, message, data , pagination: null });
+  }
+  catch (e){
+    response.error(res, e)
+  }
 };
 
 exports.create = async (req, res)=>{
 
-    try{
+  try{
 
-        const { title } = req.body;
+    const { title } = req.body;
 
-        const { status, data, message } = await categoryDb.create({ title });
+    const { status, data, message } = await categoryDb.create({ title });
 
-        response.success(res, { code: 200, status, message, data , pagination: null });
-    }
-    catch (e){
-        response.error(res, e)
-    }
+    response.success(res, { code: 200, status, message, data , pagination: null });
+  }
+  catch (e){
+    response.error(res, e)
+  }
 };
 
 exports.list = async (req, res,) =>{
 
-    try{
+  try{
 
-        const { filterBy, search } = req.body;
-        let where = {};
+    const { filterBy, search } = req.body;
+    let where = {};
 
-        if(search){
+    if(search){
 
-            if(!['title',]
-                    .includes(filterBy)) throw { code: 409, message: 'Invalid filter by' };
+      if(!['title']
+        .includes(filterBy)) throw { code: 409, message: 'Invalid filter by' };
 
-            where[filterBy] = {
-                [global.Op.like]: '%'+search+'%',
-            };
-        }
-
-        where['status'] = true;
-        where['deleted'] = false;
-
-        const { status, data, message, pagination } = await categoryDb.list({
-            page: req.body.pagination.page,
-            rowsPerPage: req.body.pagination.rowsPerPage,
-            sortBy: req.body.pagination.sortBy,
-            descending: req.body.pagination.descending,
-            where: where,
-        });
-
-        if(!status) throw { message };
-
-        response.success(res, { code: 200, message, data, pagination});
-
+      where[filterBy] = {
+        [global.Op.like]: '%'+search+'%',
+      };
     }
-    catch (e) {
 
-        response.error(res, e);
-    }
+    where['status'] = true;
+    where['deleted'] = false;
+
+    const { status, data, message, pagination } = await categoryDb.list({
+      page: req.body.pagination.page,
+      rowsPerPage: req.body.pagination.rowsPerPage,
+      sortBy: req.body.pagination.sortBy,
+      descending: req.body.pagination.descending,
+      where: where,
+    });
+
+    if(!status) throw { message };
+
+    response.success(res, { code: 200, message, data, pagination});
+
+  }
+  catch (e) {
+
+    response.error(res, e);
+  }
 };
 
 exports.update = async (req, res, ) => {
 
-    try{
+  try{
 
-        const { id } = req.params;
-        const { title } = req.body;
+    const { id } = req.params;
+    const { title } = req.body;
 
-        const { status, data, message } = await categoryDb.update({
-            where: { id },
-            body: { title }
-        })
+    const { status, data, message } = await categoryDb.update({
+      where: { id },
+      body: { title },
+    })
 
-        if(!status) throw { message }
+    if(!status) throw { message }
 
-        response.success(res, { code: 200, message, data, pagination: null });
-    }
-    catch (e){
-        response.error(res, e);
-    }
+    response.success(res, { code: 200, message, data, pagination: null });
+  }
+  catch (e){
+    response.error(res, e);
+  }
 };

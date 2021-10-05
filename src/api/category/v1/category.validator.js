@@ -2,60 +2,62 @@ const { response } = require('@utils');
 
 exports.create = (req, res, next) => {
 
-    try{
+  try{
 
-        const { title } = req.body;
+    const { title } = req.body;
 
-        if(!title) throw { code: 409, message: 'Invalid title!' };
+    console.log(title)
 
-        next()
-    }
-    catch (e){
-        response.error(res, e);
-    }
+    if(!title) throw { code: 409, message: 'Invalid title!' };
+
+    next()
+  }
+  catch (e){
+    response.error(res, e);
+  }
 };
 
 exports.list = (req, res, next) =>{
 
-    try{
+  try{
 
-        const { pagination } = req.body;
+    const { pagination } = req.body;
 
-        const {page, rowsPerPage, sortBy, descending } = pagination;
+    const {page, rowsPerPage, sortBy, descending } = pagination;
 
-        if(!pagination) throw { code: 409, message: 'Invalid pagination' };
+    if(!pagination) throw { code: 409, message: 'Invalid pagination' };
 
-        if(page<0) throw { code: 409, message: 'Invalid list request' };
+    if(page<0) throw { code: 409, message: 'Invalid list request' };
 
-        if(rowsPerPage<1) throw { code: 409, message: 'Invalid list count' };
+    if(rowsPerPage<1) throw { code: 409, message: 'Invalid list count' };
 
-        if(!sortBy) throw { code: 409, message: 'Invalid sort by' };
+    if(!sortBy) throw { code: 409, message: 'Invalid sort by' };
 
-        if(![true, false].includes(descending)) throw { code: 409, message: 'Invalid list order' };
+    if(![true, false].includes(descending)) throw { code: 409, message: 'Invalid list order' };
 
-        next()
+    next()
 
-    }
-    catch (e) {
-        response.error(res, e);
-    }
+  }
+  catch (e) {
+    response.error(res, e);
+  }
 };
 
 exports.update = (req, res, next) => {
 
-    try{
+  try{
 
-        const { id } = req.params;
+    const { id } = req.params;
 
-        const { title } = req.body;
+    const { title } = req.body;
 
-        if(!id) throw { code: 409, message: 'Invalid id!' }
+    if(!id) throw { code: 409, message: 'Invalid id!' }
 
-        if(!title) throw { code: 409, message: 'Invalid title!' }
+    if(!title) throw { code: 409, message: 'Invalid title!' }
 
-        next()
-    }
-    catch (e){
-        response.error(res, e);
-    }
+    next()
+  }
+  catch (e){
+    response.error(res, e);
+  }
 }
