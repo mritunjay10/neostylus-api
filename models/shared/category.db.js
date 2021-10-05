@@ -8,103 +8,103 @@ Model.hasMany(db.courses,  { sourceKey: 'id', foreignKey:'category', as:'courses
 exports.create = async (datum)=>{
   try{
 
-      const data  = await Model.create(datum);
+    const data  = await Model.create(datum);
 
-      return { status: true, data, message: 'Created category!' };
+    return { status: true, data, message: 'Created category!' };
   }
   catch (e){
-      return { status: false, message: e.message || 'Unable to create category', pagination: null }
+    return { status: false, message: e.message || 'Unable to create category', pagination: null }
   }
 };
 
 exports.get = async (where) =>{
 
-    try{
+  try{
 
-        where['status'] = true;
-        where['deleted'] = false;
+    where['status'] = true;
+    where['deleted'] = false;
 
 
-        const data = await Model.findOne({
-            attributes: ['id','title',],
-            where,
-        });
+    const data = await Model.findOne({
+      attributes: ['id','title'],
+      where,
+    });
 
-        return { status: true, data, message: 'Category', pagination: null };
-    }
-    catch (e){
-        return { status: false, message: e.message || 'Unable to fetch categories', pagination: null }
-    }
+    return { status: true, data, message: 'Category', pagination: null };
+  }
+  catch (e){
+    return { status: false, message: e.message || 'Unable to fetch categories', pagination: null }
+  }
 };
 
 exports.all = async ()=>{
 
-    try{
+  try{
 
-        const data = await Model.findAll({
-            attributes: ['id','title',],
-            where: { status: true, deleted: false, }
-        });
+    const data = await Model.findAll({
+      attributes: ['id','title'],
+      where: { status: true, deleted: false },
+    });
 
-        return { status: true, data, message: 'Categories!' };
-    }
-    catch (e){
-        return { status: false, message: e.message || 'Unable to fetch categories', pagination: null }
-    }
+    return { status: true, data, message: 'Categories!' };
+  }
+  catch (e){
+    return { status: false, message: e.message || 'Unable to fetch categories', pagination: null }
+  }
 };
 
 exports.list = async(data)=>{
 
-    try{
+  try{
 
-        data.where['deleted'] = false;
-        data.where['status'] = true;
+    data.where['deleted'] = false;
+    data.where['status'] = true;
 
-        const datum = await Model.findAndCountAll({
-            where: data.where,
-            offset: ((parseInt(+data.page)) - 1) * parseInt(+data.rowsPerPage),
-            limit: parseInt(+data.rowsPerPage),
-            order: [
-                [data.sortBy, (data.descending === true ? 'DESC' : 'ASC')],
-            ],
-        });
+    const datum = await Model.findAndCountAll({
+      where: data.where,
+      offset: ((parseInt(+data.page)) - 1) * parseInt(+data.rowsPerPage),
+      limit: parseInt(+data.rowsPerPage),
+      order: [
+        [data.sortBy, (data.descending === true ? 'DESC' : 'ASC')],
+      ],
+    });
 
-        const pagination = {
-            rowsPerPage: data.rowsPerPage,
-            rowsNumber: datum.count ,
-            page: data.page,
-            sortBy: data.sortBy,
-            descending: data.descending,
-        };
+    const pagination = {
+      rowsPerPage: data.rowsPerPage,
+      rowsNumber: datum.count ,
+      page: data.page,
+      sortBy: data.sortBy,
+      descending: data.descending,
+    };
 
-        return { status: true, data: datum.rows, pagination , message: 'Categories list' }
-    }
-    catch (e){
+    return { status: true, data: datum.rows, pagination , message: 'Categories list' }
+  }
+  catch (e){
 
-        return { status: false, data: null, message: e.message, pagination: null }
-    }
+    return { status: false, data: null, message: e.message, pagination: null }
+  }
 };
 
 exports.update = async ({where, body})=>{
-    try{
+  try{
 
-        const datum = await Model.update(body, { where });
+    const datum = await Model.update(body, { where });
 
-        return { status: true, data: datum[0], message: 'Category updated!', pagination: null, }
-    }
-    catch (e){
-        return { status: false, data: null, message: e.message, pagination: null }
-    }
+    return { status: true, data: datum[0], message: 'Category updated!', pagination: null }
+  }
+  catch (e){
+    return { status: false, data: null, message: e.message, pagination: null }
+  }
 }
 
 exports.delete = async (where) =>{
 
-    try{
-        const datum = await Model.update({ deleted: true }, { where });
+  try{
+    const datum = await Model.update({ deleted: true }, { where });
 
-        return { success: true, data: datum[0], pagination: null , message: 'Deleted successfully' }
-    }
-    catch (e){
-        return { success: false, data: null, message: e.message || 'Unable to delete', pagination: false }
-    }
+    return { success: true, data: datum[0], pagination: null , message: 'Deleted successfully' }
+  }
+  catch (e){
+    return { success: false, data: null, message: e.message || 'Unable to delete', pagination: false }
+  }
 };
