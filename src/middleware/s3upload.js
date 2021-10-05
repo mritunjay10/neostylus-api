@@ -23,7 +23,7 @@ exports.image = multer({
   }),
 });
 
-exports.coverImage = multer({
+exports.courseImage = multer({
 
   storage: multerS3({
     s3,
@@ -35,11 +35,11 @@ exports.coverImage = multer({
       const ext = path.extname(file.originalname);
       const fileName = uuid()+ext;
 
-      if(req.file){
+      if(req.image){
         req.coverImage = `${process.env.S3_BASE_URL}${fileName}`;
       }
       else{
-        req.file = `${process.env.S3_BASE_URL}${fileName}`;
+        req.image = `${process.env.S3_BASE_URL}${fileName}`;
       }
       cb(null, fileName);
     },

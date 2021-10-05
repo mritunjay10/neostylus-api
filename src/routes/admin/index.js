@@ -24,9 +24,8 @@ router.post('/sub-category/list/:category?', subCategoryValidator.list, subCateg
 router.put('/sub-category/:id', subCategoryValidator.update, subCategoryController.update);
 
 
-router.post('/course/create',  s3upload.image.fields([
+router.post('/course/create',  s3upload.courseImage.fields([
   { name: 'file', maxCount: 1 },
-]),s3upload.image.fields([
   { name: 'coverFile', maxCount: 1 },
 ]), courseValidator.create, courseController.create);
 
