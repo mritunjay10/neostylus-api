@@ -12,6 +12,9 @@ exports.create = async (req, res)=>{
       costPerSessionOnlineINR, costPerSessionOnlineINT,
       meta } = req.body;
 
+    console.log(req.coverImage)
+    console.log(req.image)
+
     const { status, data, message } = await courseDb.create( {
       category, subCategory, title,
       imageUrl: req.image,
