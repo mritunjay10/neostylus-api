@@ -7,6 +7,8 @@ exports.create = async (req, res)=>{
 
     const { title } = req.body;
 
+    console.log(req.image)
+
     const { status, data, message } = await categoryDb.create({ title, imageUrl: req.image });
 
     response.success(res, { code: 200, status, message, data , pagination: null });
