@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
 
-const { categoryValidator, categoryController, } = require('@api/category/v1');
-const { subCategoryValidator, subCategoryController, } = require('@api/sub-category/v1');
-const { courseValidator, courseController, } = require('@api/course/v1');
-const { slotValidator, slotController, } = require('@api/slot/v1');
+const { categoryValidator, categoryController } = require('@api/category/v1');
+const { subCategoryValidator, subCategoryController } = require('@api/sub-category/v1');
+const { courseValidator, courseController } = require('@api/course/v1');
+const { slotValidator, slotController } = require('@api/slot/v1');
 const { s3upload } = require('@middleware')
 
 router.post('/category/create', s3upload.image.fields([
@@ -24,7 +24,11 @@ router.post('/sub-category/list/:category?', subCategoryValidator.list, subCateg
 router.put('/sub-category/:id', subCategoryValidator.update, subCategoryController.update);
 
 
-router.post('/course/create', courseValidator.create, courseController.create);
+router.post('/course/create',  s3upload.image.fields([
+  { name: 'file', maxCount: 1 },
+]),s3upload.image.fields([
+  { name: 'coverFile', maxCount: 1 },
+]), courseValidator.create, courseController.create);
 
 router.post('/course/list', courseValidator.list, courseController.list);
 
