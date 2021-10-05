@@ -15,8 +15,9 @@ router.post('/category/list', categoryValidator.list, categoryController.list);
 
 router.put('/category/:id', categoryValidator.update, categoryController.update);
 
-
-router.post('/sub-category/create', subCategoryValidator.create, subCategoryController.create);
+router.post('/sub-category/create', s3upload.image.fields([
+  { name: 'file', maxCount: 1 },
+]), subCategoryValidator.create, subCategoryController.create);
 
 router.post('/sub-category/list/:category?', subCategoryValidator.list, subCategoryController.list);
 

@@ -16,7 +16,6 @@ exports.image = multer({
       console.log(file)
       const ext = path.extname(file.originalname);
       const fileName = uuid()+ext;
-      console.log(`${process.env.S3_BASE_URL}${fileName}`)
       req.image = `${process.env.S3_BASE_URL}${fileName}`;
       cb(null, fileName);
     },

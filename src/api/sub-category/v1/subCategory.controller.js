@@ -1,113 +1,111 @@
 const { response } = require('@utils');
 const { subCategoryDb } = require('@models/shared');
 
+exports.create = async (req, res) =>{
+
+  try{
+
+    const { title, category } = req.body;
+
+    const { status, data, message } = await subCategoryDb.create({
+      title, category, imageUrl : req.image,
+    });
+
+    if(!status) throw { message };
+
+    response.success(res, { code: 200, status, message, data , pagination: null });
+  }
+  catch (e){
+    response.error(res, e)
+  }
+};
 
 exports.all = async (req, res)=>{
 
-    try{
+  try{
 
-        const { category } = req.params;
+    const { category } = req.params;
 
-        const where = {};
+    const where = {};
 
-        if(category){
-            where['category'] = category;
-        }
-
-        const { status, data, message } = await subCategoryDb.all(where);
-
-        if(!status) throw { message };
-
-        response.success(res, { code: 200, status, message, data , pagination: null });
+    if(category){
+      where['category'] = category;
     }
-    catch (e){
-        response.error(res, e)
-    }
+
+    const { status, data, message } = await subCategoryDb.all(where);
+
+    if(!status) throw { message };
+
+    response.success(res, { code: 200, status, message, data , pagination: null });
+  }
+  catch (e){
+    response.error(res, e)
+  }
 };
-
-exports.create = async (req, res) =>{
-
-    try{
-
-        const { title, category } = req.body;
-
-        const { status, data, message } = await subCategoryDb.create({
-            title, category
-        });
-
-        if(!status) throw { message };
-
-        response.success(res, { code: 200, status, message, data , pagination: null });
-    }
-    catch (e){
-        response.error(res, e)
-    }
-};
-
 
 exports.list = async (req, res,) =>{
 
-    try{
+  try{
 
-        const { filterBy, search } = req.body;
-        const { category } = req.params;
+    const { filterBy, search } = req.body;
+    const { category } = req.params;
 
-        let where = {};
+    let where = {};
 
-        if(search){
+    if(search){
 
-            if(!['title',]
-                    .includes(filterBy)) throw { code: 409, message: 'Invalid filter by' };
+      if(!['title']
+        .includes(filterBy)) throw { code: 409, message: 'Invalid filter by' };
 
-            where[filterBy] = {
-                [global.Op.like]: '%'+search+'%',
-            };
-        }
-
-        if(category){
-            where['category'] = category;
-        }
-
-        where['status'] = true;
-        where['deleted'] = false;
-
-        const { status, data, message, pagination } = await subCategoryDb.list({
-            page: req.body.pagination.page,
-            rowsPerPage: req.body.pagination.rowsPerPage,
-            sortBy: req.body.pagination.sortBy,
-            descending: req.body.pagination.descending,
-            where: where,
-        });
-
-        if(!status) throw { message };
-
-        response.success(res, { code: 200, message, data, pagination});
-
+      where[filterBy] = {
+        [global.Op.like]: '%'+search+'%',
+      };
     }
-    catch (e) {
 
-        response.error(res, e);
+    if(category){
+      where['category'] = category;
     }
+
+    where['status'] = true;
+    where['deleted'] = false;
+
+    const { status, data, message, pagination } = await subCategoryDb.list({
+      page: req.body.pagination.page,
+      rowsPerPage: req.body.pagination.rowsPerPage,
+      sortBy: req.body.pagination.sortBy,
+      descending: req.body.pagination.descending,
+      where: where,
+    });
+
+    if(!status) throw { message };
+
+    response.success(res, { code: 200, message, data, pagination});
+
+  }
+  catch (e) {
+
+    response.error(res, e);
+  }
 };
 
 
 exports.update = async (req, res, ) =>{
 
-    try{
+  try{
 
-        const { id } = req.params;
-        const { title } = req.body;
+    const { id } = req.params;
+    const { title } = req.body;
 
-        const { status, data, message } = await subCategoryDb.update({
-            where: { id },
-            body: { title }
-        })
+    const { status, data, message } = await subCategoryDb.update({
+      where: { id },
+      body: { title },
+    })
 
-        if(!status) throw { message }
+    if(!status) throw { message }
 
-        response.success(res, { code: 200, message, data, pagination: null });
-    }
-    catch (e){
-        response.error(res, e);
-    }
+    response.success(res, { code: 200, message, data, pagination: null });
+  }
+  catch (e){
+    response.error(res, e);
+  }
 };
