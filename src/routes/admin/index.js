@@ -7,7 +7,9 @@ const { courseValidator, courseController, } = require('@api/course/v1');
 const { slotValidator, slotController, } = require('@api/slot/v1');
 const { s3upload } = require('@middleware')
 
-router.post('/category/create', s3upload.image, categoryValidator.create, categoryController.create);
+router.post('/category/create', s3upload.image.fields([
+  { name: 'file', maxCount: 1 },
+]), categoryValidator.create, categoryController.create);
 
 router.post('/category/list', categoryValidator.list, categoryController.list);
 

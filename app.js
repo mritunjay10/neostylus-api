@@ -24,7 +24,9 @@ AWS.config.update({
   secretAccessKey: process.env.S3_SECRET_ACCESS_KEY,
 });
 
-global.s3 = new AWS.S3() || global.s3;
+global.s3 = new AWS.S3();
+
+console.log(global.s3)
 
 global.saltRounds = global.saltRounds || 10;
 
