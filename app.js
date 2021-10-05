@@ -20,11 +20,11 @@ const emailValidator = require('email-validator');
 const phoneNumber = require( 'awesome-phonenumber' );
 
 AWS.config.update({
-    accessKeyId: process.env.S3_ACCESS_KEY,
-    secretAccessKey: process.env.S3_SECRET_ACCESS_KEY,
+  accessKeyId: process.env.S3_ACCESS_KEY,
+  secretAccessKey: process.env.S3_SECRET_ACCESS_KEY,
 });
 
-global.s3 = new AWS.S3();
+global.s3 = new AWS.S3() || global.s3;
 
 global.saltRounds = global.saltRounds || 10;
 
@@ -33,7 +33,7 @@ global.basePath = global.basePath || __dirname;
 global.emailValidator = global.emailValidator || emailValidator;
 global.phoneNumber = global.phoneNumber || phoneNumber;
 
-const { authorization, } = require('@middleware');
+const { authorization } = require('@middleware');
 
 const auth = require('@routes/auth');
 const common = require('@routes/common');
@@ -59,16 +59,16 @@ app.use('/api/v1/admin', authorization.checkUser, admin);
 
 // catch 404 and forward to error handler
 app.use((req, res, next)=> {
-    res.status(404).json({ status: false, message: 'NO PAGE FOUND', data: null, pagination: null  })
+  res.status(404).json({ status: false, message: 'NO PAGE FOUND', data: null, pagination: null  })
 });
 
 // error handler
 app.use((err, req, res, next)=> {
-    // set locals, only providing error in development
-    res.locals.message = process.env.NODE_ENV === 'development' ? err.message: 'Some error occurred';
-    res.locals.error = process.env.NODE_ENV === 'development' ? err : {};
+  // set locals, only providing error in development
+  res.locals.message = process.env.NODE_ENV === 'development' ? err.message: 'Some error occurred';
+  res.locals.error = process.env.NODE_ENV === 'development' ? err : {};
 
-    res.status(500).json({ status: false, message: res.locals.error, data: null, pagination: null  })
+  res.status(500).json({ status: false, message: res.locals.error, data: null, pagination: null  })
 });
 
 module.exports = app;
