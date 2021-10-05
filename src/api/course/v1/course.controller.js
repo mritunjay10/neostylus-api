@@ -14,8 +14,8 @@ exports.create = async (req, res)=>{
 
     const { status, data, message } = await courseDb.create( {
       category, subCategory, title,
-      image: req.imageUrl,
-      coverImage: req.coverImageUrl,
+      image: req.image,
+      coverImage: req.coverImage,
       description, totalSessions, sessionDuration,
       costPerSessionFaceToFaceINR, costPerSessionFaceToFaceINT,
       costPerSessionOnlineINR, costPerSessionOnlineINT,
