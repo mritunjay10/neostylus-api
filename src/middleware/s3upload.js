@@ -5,8 +5,6 @@ const { v4:  uuid } = require('uuid');
 
 const s3 = global.s3;
 
-console.log(s3)
-
 exports.image = multer({
 
   storage: multerS3({
