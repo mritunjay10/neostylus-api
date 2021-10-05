@@ -34,8 +34,13 @@ exports.coverImage = multer({
       console.log(file)
       const ext = path.extname(file.originalname);
       const fileName = uuid()+ext;
-      req.coverImage = `${process.env.S3_BASE_URL}${fileName}`;
-      console.log(req.image)
+
+      if(req.file){
+        req.coverImage = `${process.env.S3_BASE_URL}${fileName}`;
+      }
+      else{
+        req.file = `${process.env.S3_BASE_URL}${fileName}`;
+      }
       cb(null, fileName);
     },
   }),
