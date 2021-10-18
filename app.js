@@ -35,12 +35,13 @@ global.basePath = global.basePath || __dirname;
 global.emailValidator = global.emailValidator || emailValidator;
 global.phoneNumber = global.phoneNumber || phoneNumber;
 
-const { authorization } = require('@middleware');
+const { authorization, razor } = require('@middleware');
 
 const auth = require('@routes/auth');
 const common = require('@routes/common');
 const user = require('@routes/user');
 const admin = require('@routes/admin');
+const webhook = require('@routes/webhook');
 
 const app = express();
 
@@ -52,12 +53,12 @@ app.use(bodyParser.json());
 app.use(expressSanitizer());
 app.use(cors());
 
-////////////////////////////////    ADMIN
-app.use('/api/v1/auth', auth);
-app.use('/api/v1/common', authorization.checkUser, common);
-app.use('/api/v1/user', authorization.checkUser, user);
-app.use('/api/v1/admin', authorization.checkUser, admin);
 
+app.use('/api/v1/auth', auth);
+app.use('/api/v1/admin', authorization.checkUser, admin);
+app.use('/api/v1/user', authorization.checkUser, user);
+app.use('/api/v1/common', authorization.checkUser, common);
+app.use('/webhook/v1', razor.validate, webhook);
 
 // catch 404 and forward to error handler
 app.use((req, res, next)=> {
