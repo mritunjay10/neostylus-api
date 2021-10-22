@@ -1,11 +1,15 @@
 const express = require('express');
 const router = express.Router();
 
+const { bannerController } = require('@api/banner/v1');
 const { categoryValidator, categoryController } = require('@api/category/v1');
 const { subCategoryValidator, subCategoryController } = require('@api/sub-category/v1');
 const { courseValidator, courseController } = require('@api/course/v1');
 const { slotValidator, slotController } = require('@api/slot/v1');
 const { s3upload } = require('@middleware')
+
+
+router.post('/banner/create', s3upload.image.fields([{ name: 'banner', maxCount: 4 }]), bannerController.create)
 
 router.post('/category/create', s3upload.image.fields([
   { name: 'file', maxCount: 1 },

@@ -48,7 +48,8 @@
     "eslint": "^5.16.0",
     "eslint-config-airbnb-base": "^14.1.0",
     "eslint-plugin-import": "^2.22.1",
-    "module-alias": "^2.2.2"
+    "module-alias": "^2.2.2",
+    "sequelize-cli": "^6.2.0"
   },
   "eslintConfig": {
     "env": {

@@ -6,69 +6,69 @@ Model.belongsTo(db.courses,  { sourceKey: 'id', foreignKey:'course', as:'booking
 
 exports.create = async (data)=>{
 
-    try{
+  try{
 
-        await Model.bulkCreate(data);
+    await Model.bulkCreate(data);
 
-        return { status: true, data: 1, message: 'Booked successfully!', pagination: null }
-    }
-    catch (e){
-        return { status: false, data: null, message: 'Unable to book!', pagination: null }
-    }
+    return { status: true, data: 1, message: 'Booked successfully!', pagination: null }
+  }
+  catch (e){
+    return { status: false, data: null, message: 'Unable to book!', pagination: null }
+  }
 };
 
 exports.bookedCourses = async (where) =>{
 
-    try{
+  try{
 
-        const data = await Model.findAll({
-            where,
-            attributes: ['date','slot','course'],
-        });
+    const data = await Model.findAll({
+      where,
+      attributes: ['date','slot','course'],
+    });
 
-        return { status: true, data, message: 'Booking dates!', pagination: null }
-    }
-    catch (e){
-        return { status: false, data: null, message: 'Unable to fetch!', pagination: null }
-    }
+    return { status: true, data, message: 'Booking dates!', pagination: null }
+  }
+  catch (e){
+    return { status: false, data: null, message: 'Unable to fetch!', pagination: null }
+  }
 };
 
 exports.list = async(data)=>{
 
-    try{
+  try{
 
-        data.where['deleted'] = false;
-        data.where['status'] = true;
+    data.where['deleted'] = false;
+    data.where['status'] = true;
 
-        const datum = await Model.findAndCountAll({
-            where: data.where,
-            offset: ((parseInt(+data.page)) - 1) * parseInt(+data.rowsPerPage),
-            limit: parseInt(+data.rowsPerPage),
-            order: [
-                [data.sortBy, (data.descending === true ? 'DESC' : 'ASC')],
-            ],
-            include:[
-                {
-                    model: db.courses,
-                    as: 'bookingCourseDatum',
-                    attributes: ['id','title'],
-                    where:{ status: true, }
-                }
-            ]
-        });
+    const datum = await Model.findAndCountAll({
+      where: data.where,
+      offset: ((parseInt(+data.page)) - 1) * parseInt(+data.rowsPerPage),
+      limit: parseInt(+data.rowsPerPage),
+      order: [
+        [data.sortBy, (data.descending === true ? 'DESC' : 'ASC')],
+      ],
+      include:[
+        {
+          model: db.courses,
+          as: 'bookingCourseDatum',
+          attributes: ['id','title'],
+          where:{ status: true },
+        },
+      ],
+    });
 
-        const pagination = {
-            rowsPerPage: data.rowsPerPage,
-            rowsNumber: datum.count ,
-            page: data.page,
-            sortBy: data.sortBy,
-            descending: data.descending,
-        };
+    const pagination = {
+      rowsPerPage: data.rowsPerPage,
+      rowsNumber: datum.count ,
+      page: data.page,
+      sortBy: data.sortBy,
+      descending: data.descending,
+    };
 
-        return { status: true, data: datum.rows, pagination , message: 'Bookings list' }
-    }
-    catch (e){
+    return { status: true, data: datum.rows, pagination , message: 'Bookings list' }
+  }
+  catch (e){
 
-        return { status: false, data: null, message: e.message, pagination: null }
-    }
+    return { status: false, data: null, message: e.message, pagination: null }
+  }
 };

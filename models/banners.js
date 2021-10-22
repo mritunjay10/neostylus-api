@@ -8,24 +8,8 @@ module.exports = (sequelize, DataTypes)=> {
       primaryKey: true,
       autoIncrement: true,
     },
-    category:{
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
-    subCategory:{
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
-    course:{
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
-    startTime: {
-      type: DataTypes.TIME,
-      allowNull: false,
-    },
-    endTime: {
-      type: DataTypes.TIME,
+    imageUrl: {
+      type: DataTypes.STRING,
       allowNull: false,
     },
     status:{
