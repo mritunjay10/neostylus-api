@@ -9,7 +9,7 @@ exports.create = async (data) => {
 
     const datum = await Model.bulkCreate(insert)
 
-    return { status: false, data: datum, message: 'Banner created!', pagination: null }
+    return { status: true, data: datum, message: 'Banner created!', pagination: null }
   }
   catch (e){
     return { status: false, data: null, message: 'Unable to create banner!', pagination: null }
