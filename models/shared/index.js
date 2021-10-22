@@ -5,6 +5,7 @@ const subCategoryDb = require('./subCategory.db');
 const slotDb = require('./slot.db');
 const bookingDb = require('./booking.db');
 const rawQuery = require('./rawQuries');
+const bannerDb = require('./banner.db');
 
 module.exports = {
   userDb,
@@ -14,4 +15,5 @@ module.exports = {
   slotDb,
   bookingDb,
   rawQuery,
+  bannerDb,
 };
