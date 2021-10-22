@@ -13,11 +13,9 @@ exports.image = multer({
     acl: 'public-read',
     contentType: multerS3.AUTO_CONTENT_TYPE,
     key: async function (req, file, cb) {
-      console.log(file)
       const ext = path.extname(file.originalname);
       const fileName = uuid()+ext;
       req.image = `${process.env.S3_BASE_URL}${fileName}`;
-      console.log(req.image)
       cb(null, fileName);
     },
   }),
@@ -33,7 +31,6 @@ exports.courseImage = multer({
     key: async function (req, file, cb) {
       const ext = path.extname(file.originalname);
       const fileName = uuid()+ext;
-
       if(req.image){
         req.coverImage = `${process.env.S3_BASE_URL}${fileName}`;
       }
@@ -55,7 +52,6 @@ exports.banners = multer({
     key: async function (req, file, cb) {
       const ext = path.extname(file.originalname);
       const fileName = uuid()+ext;
-
       if(req.banners && req.banners.length>0){
         req.banners.push(`${process.env.S3_BASE_URL}${fileName}`)
       }

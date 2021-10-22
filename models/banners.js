@@ -1,7 +1,7 @@
 /* jshint indent: 2 */
 
 module.exports = (sequelize, DataTypes)=> {
-  return  sequelize.define('slots', {
+  return  sequelize.define('banners', {
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -30,7 +30,7 @@ module.exports = (sequelize, DataTypes)=> {
     },
   },
   {
-    tableName: 'slots',
+    tableName: 'banners',
     hooks: {
       beforeCreate: function (datum, options,) {
         datum.createdAt = new Date();
