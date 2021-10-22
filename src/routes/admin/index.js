@@ -13,7 +13,9 @@ router.post('/banner/create',
   bannerValidator.bannerCreate,
   s3upload.banners.fields([{ name: 'banner', maxCount: 4 }]),
   bannerController.bannerCreate
-)
+);
+
+router.post('/banner/list', bannerValidator.list, bannerController.list);
 
 router.post('/category/create', s3upload.image.fields([
   { name: 'file', maxCount: 1 },
