@@ -56,12 +56,13 @@ exports.banners = multer({
       const ext = path.extname(file.originalname);
       const fileName = uuid()+ext;
 
-      if(req.banners.length>0){
+      if(req.banners && req.banners.length>0){
         req.banners.push(`${process.env.S3_BASE_URL}${fileName}`)
       }
       else{
-        req.banners = []
-        req.banners.push(`${process.env.S3_BASE_URL}${fileName}`)
+        const banners = []
+        banners.push(`${process.env.S3_BASE_URL}${fileName}`)
+        req.banners = banners
       }
       cb(null, fileName);
     },
